@@ -1,10 +1,22 @@
 <div class="container">
+    <div class="row align-items-center">
+    <div class="mx-auto text-center">
+    <img class="slideInDown center"
+    src="assets/poke-logo.png"
+    alt="Pokemon">
+    </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="mx-auto text-center">
+        <input type="text" [(ngModel)]="pesquisa"> 
+        </div>
+        </div>
     <div class="row">
-        <div class="col-4 mt-5" *ngFor="let pokemon of pokemons; let i = index" >
+        <div class="col-4 mt-5" *ngFor="let i = index; let pokemon of pokemons |filter:pesquisa " >
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top"
                     src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{i+1}}.png"
-                    alt="Card image cap">
+                    alt="{{pokemon.name}}">
                 <div class="card-body">
                     <p class="card-text">{{pokemon.name}}</p>
                 </div>

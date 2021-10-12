@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Pokemon } from 'src/app/models/pokemon';
 import { PokedexService } from 'src/app/service/pokedex.service';
 
@@ -10,12 +11,14 @@ import { PokedexService } from 'src/app/service/pokedex.service';
 export class PokedexComponent implements OnInit {
 
   constructor(private pokemonService:PokedexService) { }
-
+   public pesquisa : any;
    public pokemons:Pokemon[];
    public pokemon = {} as Pokemon;
-
+   public p: Pokemon[] = [];
+  
   ngOnInit(): void {
     this.getPokemons();
+    // this.pesquisa = this.pesquisar;
   }
 
   getPokemons(){
@@ -25,12 +28,20 @@ export class PokedexComponent implements OnInit {
       console.log(this.pokemon);
       console.log(this.pokemons);
       // let s = this.pokemons[0].name[0].toLocaleUpperCase() + this.pokemons[0].name.substr(1);
-
-      // this.pokemons.forEach((s, i)=>{
+      let k = [];
+      this.pokemons.forEach((s, i)=>{
       // this.pokemons[i].name = this.pokemons[i].name[i].toLocaleUpperCase() + this.pokemons[i].name.substr(1);
-      //   // console.log(i);
-      // });
-    
+        this.pokemonService.urlPokemon = s.url;
+        
+        this.pokemonService.getPok().subscribe((p:Pokemon[])=>{
+            // k.push(p);
+            
+
+            
+            
+        });
+      });
+      console.log(k);
     });
   }
 
