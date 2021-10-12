@@ -9,7 +9,8 @@ import { Pokemon } from '../models/pokemon';
 })
 export class PokedexService {
 
-    url = 'https://pokeapi.co/api/v2/pokemon'; // api rest fake 
+    // url = 'https://pokeapi.co/api/v2/pokemon?limit=150&offset=200'; // api rest fake 
+    url = 'https://pokeapi.co/api/v2/pokemon?limit=150'; // api rest fake 
     // url = 'https://pokeapi.co/api/v2/pokemon/ditto'; // api rest fake 
   
     // injetando o HttpClient

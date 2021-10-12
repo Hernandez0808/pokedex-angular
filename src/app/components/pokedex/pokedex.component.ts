@@ -22,8 +22,15 @@ export class PokedexComponent implements OnInit {
     this.pokemonService.getPokemon().subscribe((pokemons)=>{
       this.pokemon = pokemons;
       this.pokemons = this.pokemon.results
+      console.log(this.pokemon);
       console.log(this.pokemons);
-      console.log(this.pokemons[0].name);
+      // let s = this.pokemons[0].name[0].toLocaleUpperCase() + this.pokemons[0].name.substr(1);
+
+      // this.pokemons.forEach((s, i)=>{
+      // this.pokemons[i].name = this.pokemons[i].name[i].toLocaleUpperCase() + this.pokemons[i].name.substr(1);
+      //   // console.log(i);
+      // });
+    
     });
   }
 

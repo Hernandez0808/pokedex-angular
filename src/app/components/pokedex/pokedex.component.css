@@ -1,0 +1,15 @@
+.card-img-top   {
+    background-color: rgb(223, 240, 74);
+    border: dashed 3px black;
+}
+
+.card-body{
+    background-color: silver;
+}
+
+.card-body p{
+    background-color: white;
+    padding: 5px;
+    border-radius: 3px;
+    text-align: center;
+}

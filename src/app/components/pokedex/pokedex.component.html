@@ -1,9 +1,9 @@
-<div class="container mt-5">
-    <div class="row d-flex">
-        <div class="col">
-            <div *ngFor="let pokemon of pokemons; let i = index" class="card" style="width: 18rem;">
+<div class="container">
+    <div class="row">
+        <div class="col-4 mt-5" *ngFor="let pokemon of pokemons; let i = index" >
+            <div class="card" style="width: 18rem;">
                 <img class="card-img-top"
-                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/{{i+1}}.png"
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{i+1}}.png"
                     alt="Card image cap">
                 <div class="card-body">
                     <p class="card-text">{{pokemon.name}}</p>
