@@ -19,7 +19,8 @@
                     src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png"
                     alt="{{pokemon.name}}">
                 <div class="card-body">
-                    <p class="card-text">{{pokemon.name}}</p><app-modal-detalhe-pokemon id="{{pokemon.id}}"  routerLink="pokemon/{{pokemon.id}}"></app-modal-detalhe-pokemon>
+                    <p class="card-text">{{pokemon.name}}</p> <app-modal-detalhe-pokemon routerLink="/pokemon/{{pokemon.id}}" [idPokemon]="pokemon.id" [P]="pokemon" ></app-modal-detalhe-pokemon>                                                                            
+                  
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Pokemon } from 'src/app/models/pokemon';
@@ -10,39 +10,26 @@ import { PokedexService } from 'src/app/service/pokedex.service';
   styleUrls: ['./modal-detalhe-pokemon.component.css']
 })
 export class ModalDetalhePokemonComponent {
-  public pokemon = {} as Pokemon;
-  public id : number;
+  public pokemon :Pokemon [] ;
+  @Input() idPokemon: number;
+  @Input() P = {} as Pokemon;
+
+
   constructor(config: NgbModalConfig, private modalService: NgbModal,
-     private router:Router,
-     private pokemonService: PokedexService,
-     private route: ActivatedRoute) {
+    private router: Router,
+    private pokemonService: PokedexService,
+    private route: ActivatedRoute) {
     // customize default values of modals used by this component tree
     config.backdrop = 'static';
     config.keyboard = false;
   }
   ngOnInit(): void {
-    // this.getPokemon();  
   }
-  
 
-  open(content, id) {
-    
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
-    console.log(id);
-    console.log(this.id);
-    
+  open(content) {
     this.modalService.open(content);
-    
+      this.pokemon = this.P.results;
   }
 
-    getPokemon(){
-      
-
-      this.pokemonService.getPokemonById(this.id).subscribe((pokemon:Pokemon)=>{
-        this.pokemon = pokemon;
-        console.log(this.pokemon);
-        
-      });
-    }
-  }
+}
 

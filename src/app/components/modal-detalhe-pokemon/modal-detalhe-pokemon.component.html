@@ -1,16 +1,63 @@
 <ng-template #content let-c="close" let-d="dismiss">
+  <ng-container *ngIf="P">
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+      <h4 class="modal-title" id="modal-basic-title">{{P.name}}</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <p>Hello, World!</p>
+      <div class="row">
+      <div class="col-9" style="width: 18rem;">
+        <img class="card-img-top"
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/{{P.id}}.svg"
+            alt="{{P.name}}">
+          </div>
+          <div class="col">
+            <table class="table">
+              <tbody>
+                <tr *ngFor= "let st of pokemon[0].stats">
+                      <td>{{st.base_stat}} - {{st.stat.name}}</td>
+                </tr>
+            </tbody>
+            </table>
+            </div>
+
+            
+          </div>
+          <div  class="row">
+            <label>Tipo</label>
+           <div *ngFor= "let st of pokemon[0].types" class="col-2">
+           <p class="tipo" [ngClass]="{
+          
+          'poison' : st.type.name == 'poison',
+          'grama': st.type.name == 'grass',
+          'fogo' : st.type.name == 'fire',
+          'agua' : st.type.name == 'water',
+          'bug' : st.type.name == 'bug',
+          'normal' : st.type.name == 'normal',
+          'eletrico' : st.type.name == 'electric',
+          'terra' : st.type.name == 'ground',
+          'lutador' : st.type.name == 'fighting',
+          'psiquico' : st.type.name == 'psychic',
+          'pedra' : st.type.name == 'rock',
+          'voador' : st.type.name == 'flying',
+          'fantasma' : st.type.name == 'ghost',
+          'gelo' : st.type.name == 'ice',
+          'dragao' : st.type.name == 'dragon',
+          'metalico' : st.type.name == 'steel',
+          'noturno': st.type.name == 'dark',
+          'fada' : st.type.name == 'fairy'
+           
+          }" >{{st.type.name}}</p>
+          </div>
+      </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+      <button type="button" class="btn btn-outline-dark" routerLink="/pokemon" (click)="c('Save click')">Save</button>
     </div>
-  </ng-template>
-  
-  <button class="btn btn-sm btn-dark" (click)="open(content, $event)">Detalhes</button>
+  </ng-container>
+</ng-template>
+
+<button  class="btn btn-sm btn-dark"(click)="open(content)">Detalhes</button>
+

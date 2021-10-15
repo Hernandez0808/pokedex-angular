@@ -9,7 +9,8 @@ import { PokedexComponent } from './components/pokedex/pokedex.component';
 import { ModalDetalhePokemonComponent } from './components/modal-detalhe-pokemon/modal-detalhe-pokemon.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router, RouterModule } from '@angular/router';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app.routing.module';
+
 
 @NgModule({
   declarations: [
