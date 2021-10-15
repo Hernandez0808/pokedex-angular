@@ -29,6 +29,9 @@ export class ModalDetalhePokemonComponent {
   open(content) {
     this.modalService.open(content);
       this.pokemon = this.P.results;
+      this.P.name = this.P.name[0].toUpperCase() + this.P.name.substr(1);
+
+      // console.log(s);
   }
 
 }
