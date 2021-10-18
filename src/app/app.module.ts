@@ -9,7 +9,11 @@ import { PokedexComponent } from './components/pokedex/pokedex.component';
 import { ModalDetalhePokemonComponent } from './components/modal-detalhe-pokemon/modal-detalhe-pokemon.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router, RouterModule } from '@angular/router';
-import { AppRoutingModule } from './app.routing.module';
+import { AppRoutingModule } from './app-routing.module';
+import { GraficoPokemonComponent } from './components/grafico-pokemon/grafico-pokemon.component';
+import { ChartModule } from 'angular-highcharts';
+
+
 
 
 @NgModule({
@@ -17,6 +21,7 @@ import { AppRoutingModule } from './app.routing.module';
     AppComponent,
     PokedexComponent,
     ModalDetalhePokemonComponent,
+    GraficoPokemonComponent,
     
   ],
   imports: [
@@ -26,7 +31,10 @@ import { AppRoutingModule } from './app.routing.module';
     Ng2SearchPipeModule,
     FormsModule,
     NgbModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ChartModule,
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

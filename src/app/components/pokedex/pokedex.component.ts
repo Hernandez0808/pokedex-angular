@@ -41,6 +41,9 @@ export class PokedexComponent implements OnInit {
         this.pokemonService.getPok().subscribe((p:Pokemon[])=>{
           this.poke[i].results.push(p);;
           this.poke[i].name = this.poke[i].name[0].toUpperCase() + this.poke[i].name.substr(1);
+         
+
+          
         });
       });
           this.poke = this.pokemons.map((k, i)=>{

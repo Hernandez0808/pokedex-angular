@@ -1,12 +1,12 @@
 <ng-template #content let-c="close" let-d="dismiss">
-  <ng-container *ngIf="P">
-    <div class="modal-header">
+  <ng-container  *ngIf="P">
+    <div class="modal-header bg-danger">
       <h4 class="modal-title" id="modal-basic-title">{{P.name}}</h4>
       <i type="button" class="bi bi-x-lg btn btn-danger btn-sm"(click)="d('Cross click')" ></i>
     </div>
-    <div class="modal-body">
+    <div class="modal-body bg-danger">
       <div class="row">
-      <div class="col-9" style="width: 18rem;">
+      <div class="col-9" style="width: 16rem;">
         <img class="card-img-top"
             src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/{{P.id}}.svg"
             alt="{{P.name}}">
@@ -23,9 +23,10 @@
 
             
           </div>
-          <div  class="row">
+          <div  class="row justify-content-between">
             <label>Tipo</label>
-           <div *ngFor= "let st of pokemon[0].types" class="col-2">
+           <div class="col-2">
+             <ng-container *ngFor= "let st of pokemon[0].types">
            <p class="tipo" [ngClass]="{
           
           'poison' : st.type.name == 'poison',
@@ -48,7 +49,13 @@
           'fada' : st.type.name == 'fairy'
            
           }" >{{st.type.name}}</p>
+        </ng-container>
           </div>
+          <div class="col-10">
+            <!-- <div class="d-flex justify-content-end"> -->
+            <app-grafico-pokemon [PokeGrafico]="P"></app-grafico-pokemon>
+          </div>
+          <!-- </div> -->
       </div>
     </div>
     <div class="modal-footer">
@@ -58,7 +65,7 @@
 </ng-template>
 <div class="d-flex justify-content-center">
 
- <div (click)="open(content)"  type="button" class="poke texto"> <p class="mt-2 texto">Detalhes</p></div>
+ <div (click)="open(content)"  type="button"  class="poke texto"> <p class="mt-2 texto">Detalhes</p></div>
 </div>
 
 
