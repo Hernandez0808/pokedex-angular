@@ -1,15 +1,15 @@
 <ng-template #content let-c="close" let-d="dismiss">
-  <ng-container  *ngIf="P">
-    <div class="modal-header bg-danger">
-      <h4 class="modal-title" id="modal-basic-title">{{P.name}}</h4>
-      <i type="button" class="bi bi-x-lg btn btn-danger btn-sm"(click)="d('Cross click')" ></i>
+  <ng-container  *ngIf="pokemon[0]">
+    <div class="modal-header bg-dark text-white">
+      <h4 class="modal-title" id="modal-basic-title">{{pokemon[0].name}}</h4>
+      <i type="button" class="bi bi-x-lg btn btn-danger btn-sm"(click)="fechar()" ></i>
     </div>
-    <div class="modal-body bg-danger">
+    <div class="modal-body">
       <div class="row">
       <div class="col-9" style="width: 16rem;">
         <img class="card-img-top"
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/{{P.id}}.svg"
-            alt="{{P.name}}">
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/{{pokemonId.id}}.svg"
+            alt="{{pokemon[0].name}}">
           </div>
           <div class="col">
             <table class="table">
@@ -53,13 +53,21 @@
           </div>
           <div class="col-10">
             <!-- <div class="d-flex justify-content-end"> -->
-            <app-grafico-pokemon [PokeGrafico]="P"></app-grafico-pokemon>
+            <app-grafico-pokemon [PokeGrafico]="P" [PokeGraficoId]="PokeGraficoId"></app-grafico-pokemon>
           </div>
           <!-- </div> -->
       </div>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" routerLink="/pokemon" (click)="c('Save click')">Save</button>
+    <div style="border-top: 1px solid #dee2e6"></div>
+    <div class="d-flex justify-content-between m-3">
+      <!-- <div class="row justify-content-between"> -->
+      <div class="">
+      <button type="button" class="btn btn-dark" (click)="anterior()">Anterior</button>
+    </div>
+      <div class="">
+      <button type="button" class="btn btn-dark" (click)="proximo()">Proximo</button>
+    <!-- </div> -->
+    </div>
     </div>
   </ng-container>
 </ng-template>

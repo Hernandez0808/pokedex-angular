@@ -11,7 +11,7 @@ export class PokedexService {
 
     // url = 'https://pokeapi.co/api/v2/pokemon?limit=150&offset=200'; // api rest fake 
     url = 'https://pokeapi.co/api/v2/pokemon?limit=150'; // api rest fake 
-    // url = 'https://pokeapi.co/api/v2/pokemon'; // api rest fake 
+    urlId = 'https://pokeapi.co/api/v2/pokemon'; // api rest fake 
     urlPokemon;
 
     // injetando o HttpClient
@@ -22,8 +22,16 @@ export class PokedexService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     }
 
-    // Obtem todos os pokemons
-    getPokemon(): Observable<Pokemon> {
+    // Obtem Pokemon por id
+    getPokemonByid(id:number): Observable<Pokemon> {
+      return this.httpClient.get<Pokemon>(this.urlId+'/'+ id)
+        .pipe(
+          retry(2),
+          catchError(this.handleError))
+    }
+
+     // Obtem todos os pokemons
+     getPokemon(): Observable<Pokemon> {
       return this.httpClient.get<Pokemon>(this.url)
         .pipe(
           retry(2),

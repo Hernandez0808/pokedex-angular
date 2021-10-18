@@ -21,7 +21,7 @@
      
   }
   .poison{
-      background-color: silver;
+      background-color: rgb(110, 110, 110);
   }
   .fogo{
       background-color: firebrick;
@@ -53,7 +53,7 @@
     background-color: blue;
   }
   .fantasma{
-      background-color: silver;
+      background-color: rgb(110, 110, 110);
   }
   .gelo{
       background-color:skyblue;
@@ -62,7 +62,7 @@
     background-color: slateblue;
   }
   .metal{
-      background-color: silver;
+      background-color: rgb(110, 110, 110);
   }
   .noturno{
       background-color: brown;

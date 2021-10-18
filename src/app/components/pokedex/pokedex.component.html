@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-4 mt-3" *ngFor="let pokemon of poke |filter:pesquisa ">
+        <div class="col-4 mt-3" *ngFor="let pokemon of poke | filter:pesquisa ">
             <div class="card" style="width: 15rem;">
                 <img *ngIf="10>pokemon.id" class="card-img-top"
                     src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/00{{pokemon.id}}.png"
@@ -28,7 +28,7 @@
                     
                     alt="{{pokemon.name}}">
                 <div class="card-body">
-                    <p class="card-text">{{pokemon.name}}</p> <app-modal-detalhe-pokemon  routerLink="/pokemon/{{pokemon.id}}" [P]="pokemon" ></app-modal-detalhe-pokemon>                                                                            
+                    <p class="card-text">{{pokemon.name}}</p> <app-modal-detalhe-pokemon  routerLink="/pokemon/{{pokemon.id}}" [P]="pokemon" [idPoke]="pokemon.id" ></app-modal-detalhe-pokemon>                                                                            
                   
                 </div>
             </div>
