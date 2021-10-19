@@ -5,4 +5,5 @@ body{
     -moz-background-size: cover; /*Css firefox*/
     -ms-background-size: cover; /*Css IE não use mer#^@%#*/
     -o-background-size: cover; /*Css Opera*/
+    line-height: 1;
   }

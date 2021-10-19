@@ -23,9 +23,7 @@ export class PokedexComponent implements OnInit {
    public pokemons:Pokemon[];
    public pokemon = {} as Pokemon;
    public poke = [];
-   public poke2 = [];
    public data = new Date();
-   @Output() P = {} as Pokemon;
    @Output() idPoke: number;
  public  teste : Pokemon[];
   
@@ -37,25 +35,18 @@ export class PokedexComponent implements OnInit {
     
     this.pokemonService.getPokemon().subscribe((pokemons)=>{
       this.pokemon = pokemons;
-      this.pokemons = this.pokemon.results
+      this.pokemons = this.pokemon.results;
       
-      this.pokemons.forEach((s, i)=>{
-      
-        this.pokemonService.urlPokemon = s.url;
-        this.pokemonService.getPok().subscribe((p:Pokemon[])=>{
-          this.poke[i].results.push(p);
+      this.poke = this.pokemons.map((k, i)=>{
+        let o = { name:"", id:1 };
+          o.name = k.name;
+          o.id = i+1;
+         return o;
+      }); 
+     
+      this.poke.forEach((s, i)=>{
           this.poke[i].name = this.poke[i].name[0].toUpperCase() + this.poke[i].name.substr(1);
-        });
-       
       });
-          
-          this.poke = this.pokemons.map((k, i)=>{
-          let o = { name:"", url:"", results:[], id:1 };
-            o.name = k.name;
-            o.url = k.url;
-            o.id = i+1;
-           return o;
-        }); 
     });
   }
 

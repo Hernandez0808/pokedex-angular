@@ -12,21 +12,18 @@ export class GraficoPokemonComponent{
 
   @Input() PokeGrafico = {} as Pokemon;
   @Input() PokeGraficoId = {} as Pokemon;
-  public pokemonDados:Pokemon [];
   public chart;
   public totalPokemon:string;
   public valido = true;
 
   ngOnChanges() {
     if(!this.valido){
-    this.pokemonDados =  this.PokeGraficoId.results;
     this.filtraDadosChange();
     }
     this.valido = false;
   }
 
   ngOnInit():void{
-      this.pokemonDados = this.PokeGrafico.results;
       this.filtraDadosInicial();
   }
   filtraDadosChange(){
@@ -94,15 +91,15 @@ export class GraficoPokemonComponent{
     
   }
   filtraDadosInicial(){
-
+    console.log(this.PokeGrafico);
     let data = [];
-    this.pokemonDados[0].stats.forEach((e, i)=>{
+    this.PokeGrafico.stats.forEach((e, i)=>{
       let obj = [];
       obj.push(e.stat.name, e.base_stat);
       data.push(obj)
     });
 
-    let total = this.pokemonDados[0].stats.reduce((a, b) => a + b.base_stat, 0);
+    let total = this.PokeGrafico.stats.reduce((a, b) => a + b.base_stat, 0);
     let totalPokemon = total.toString();
 
 
