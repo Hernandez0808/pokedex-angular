@@ -10,9 +10,26 @@
                 alt="{{pokemon.name}}">
 
             <input class="form-control fadeInRight sombra" style="width: 300px; display: inline;"  type="text" [(ngModel)]="pesquisa" placeholder="Pesquisar">
+            <div class="row justify-content-lg-center">
+                <div class="col-sm-auto">
+            <button type="button" class="btn btn-sm btn-dark" (click)="alfabeticoAZ()">Alfabética (A - Z)</button>
+                   </div>
+                   <div class="col-sm-auto"> 
+            <button type="button" class="btn btn-sm btn-dark" (click)="alfabeticoZA()">Alfabética (Z - A)</button>
+                    </div>
+                    <div class="col-sm-auto">
+            <button type="button" class="btn btn-sm btn-dark" (click)="pontosAtributoMaior()">Mais Forte</button>
+                       </div>
+                       <div class="col-sm-auto"> 
+            <button type="button" class="btn btn-sm btn-dark" (click)="pontosAtributoMenor()">Mais Fraco</button>
+                            </div>
+                            <div class="col-sm-auto"> 
+            <button type="button" class="btn btn-sm btn-dark" (click)="padraoInit()">Inicial</button>
+                                </div>
+        </div>   
         </div>
     </div>
-    <!-- <div class="container"> -->
+
     <div class="row justify-content-lg-center">
         <div class="col-sm-auto mt-3" *ngFor="let pokemon of poke | filter:pesquisa ">
             <div class="card" style="width: 18rem;">
@@ -34,6 +51,5 @@
                 </div>
             </div>
         </div>
-    <!-- </div> -->
 </div>
 </div>

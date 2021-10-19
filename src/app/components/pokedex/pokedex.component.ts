@@ -13,9 +13,7 @@ import { PokedexService } from 'src/app/service/pokedex.service';
 export class PokedexComponent implements OnInit {
 
   constructor(private pokemonService:PokedexService,
-   private route: ActivatedRoute,
-
-    config: NgbModalConfig, private modalService: NgbModal) {
+   config: NgbModalConfig) {
     config.backdrop = 'static';
     config.keyboard = false;
     }
@@ -23,6 +21,7 @@ export class PokedexComponent implements OnInit {
    public pokemons:Pokemon[];
    public pokemon = {} as Pokemon;
    public poke = [];
+   public padrao;
    public data = new Date();
    @Output() idPoke: number;
  public  teste : Pokemon[];
@@ -32,22 +31,82 @@ export class PokedexComponent implements OnInit {
 
   }
   getPokemons(){
-    
     this.pokemonService.getPokemon().subscribe((pokemons)=>{
       this.pokemon = pokemons;
       this.pokemons = this.pokemon.results;
-      
+
+
       this.poke = this.pokemons.map((k, i)=>{
-        let o = { name:"", id:1 };
+        let o = { name:"", id:1, pts:1};
           o.name = k.name;
           o.id = i+1;
+
          return o;
-      }); 
-     
+        }); 
+  
       this.poke.forEach((s, i)=>{
           this.poke[i].name = this.poke[i].name[0].toUpperCase() + this.poke[i].name.substr(1);
       });
+      this.pokemons.forEach((s,i)=>{
+        this.pokemonService.urlPoke = s.url;
+        let pts = [];
+        let p;
+      this.pokemonService.getPok().subscribe((pokemons)=>{
+         pts = pokemons.stats;
+         p = pts.reduce((a, b) =>  a + b.base_stat, 0);
+           this.poke[i].pts = p;
+           
+          });
+      });
+      this.padrao = this.poke;
+    });
+
+  }
+  padraoInit(){
+    this.poke.sort((a,b)=> {
+      if(a.id > b.id) {//ordenando do mais forte ao mais fraco 
+        return 1;
+      } else {
+        return -1;
+      }
     });
   }
+
+  pontosAtributoMaior(){
+    this.poke.sort((a,b)=> {
+      if(a.pts < b.pts) {//ordenando do mais forte ao mais fraco 
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+  }
+  pontosAtributoMenor(){
+    this.poke.sort((a,b)=> {
+      if(b.pts < a.pts) {//ordenando do mais forte ao mais fraco 
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+  }
+
+  alfabeticoAZ(){
+    this.poke.sort((a,b)=>{
+      let x = a.name.toUpperCase(),
+      y = b.name.toUpperCase();
+      return x == y ? 0   : x > y ? 1 :-1; 
+//sem distinção entre letras maiúsculas e minúsculas, você passa a função de comparação transformando todas as letras das strings em maiúsculas antes de efetuar a comparação, da seguinte forma:
+       });
+  }
+  alfabeticoZA(){
+    this.poke.sort((a,b)=>{
+      let x = a.name.toUpperCase(),
+      y = b.name.toUpperCase();
+      return x == y ? 0   : y > x ? 1 :-1; 
+//sem distinção entre letras maiúsculas e minúsculas, você passa a função de comparação transformando todas as letras das strings em maiúsculas antes de efetuar a comparação, da seguinte forma:
+       });
+  }
+
 
 }

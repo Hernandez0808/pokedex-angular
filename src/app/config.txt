@@ -1,0 +1,1 @@
+ng build --prod --base-href https://hernandez0808.github.io/pokedex-angular
