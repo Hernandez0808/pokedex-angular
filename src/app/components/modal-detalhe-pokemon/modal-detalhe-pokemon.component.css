@@ -15,6 +15,7 @@
     text-align: center;
     border-radius: 3px;
     color: white;
+    padding: 6px;
   }
   .grama{
       background-color: green;
@@ -81,7 +82,7 @@
       border-top-left-radius: 50px;
       border-top-right-radius: 10px;
       border-bottom-right-radius: 10px; 
-      padding-right:20px;
+      padding-right:10px;
       margin-left:45px;
   }
 

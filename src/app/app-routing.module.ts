@@ -9,14 +9,10 @@ import { GraficoPokemonComponent } from './components/grafico-pokemon/grafico-po
 
 const routes: Routes = [ 
    
-  { path: '', redirectTo: 'pokemon/inicial', pathMatch: 'full' },
+  { path: '', redirectTo: 'pokemon', pathMatch: 'full' },
   // { path: 'pokemon', component: PokedexComponent },
-  { path: 'pokemon/inicial', component: PokedexComponent },
-  // { path: 'pokemon/:id', component: PokedexComponent },
-  { path: 'pokemon/ordenado/A-Z', component: PokedexComponent },
-  { path: 'pokemon/ordenado/Z-A', component: PokedexComponent },
-  { path: 'pokemon/ordenado/maisForte', component: PokedexComponent },
-  { path: 'pokemon/ordenado/maisFraco', component: PokedexComponent },
+  { path: 'pokemon', component: PokedexComponent },
+ 
 ];
 
 @NgModule({
