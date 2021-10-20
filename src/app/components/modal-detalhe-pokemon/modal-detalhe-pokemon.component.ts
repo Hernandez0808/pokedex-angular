@@ -27,19 +27,25 @@ export class ModalDetalhePokemonComponent {
   ngOnInit(): void {
   }
   proximo() {
-    this.idControle = this.idControle + 1;
+    if(this.idControle > 150){
+      this.idControle = this.idControle + 1;
+    }
+    console.log(this.idControle)
+    if(150>this.idControle){
     this.pokeService.getPokemonByid(this.idControle).subscribe((pokemon: Pokemon) => {
       this.pokemonId = pokemon;
       this.pokemonId.name = this.pokemonId.name[0].toUpperCase() + this.pokemonId.name.substr(1);
       this.PokeGraficoId = this.pokemonId;
+      console.log("entrou")
     });
-   
+    }
   }
 
   anterior() {
+    if(this.idControle > 1){
     this.idControle = this.idControle - 1;
-    if (this.idPoke <= 150) {
-
+    }
+    if (this.idControle>0) {
       this.pokeService.getPokemonByid(this.idControle).subscribe((pokemon: Pokemon) => {
         this.pokemonId = pokemon;
         this.pokemonId.name = this.pokemonId.name[0].toUpperCase() + this.pokemonId.name.substr(1);
@@ -48,7 +54,6 @@ export class ModalDetalhePokemonComponent {
      
     }
   }
-
   open(content) {
     this.idControle = this.idPoke;
     this.pokeService.getPokemonByid(this.idPoke).subscribe((pokemon: Pokemon) => {

@@ -16,12 +16,14 @@ import { ChartModule } from 'angular-highcharts';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     PokedexComponent,
     ModalDetalhePokemonComponent,
     GraficoPokemonComponent,
+
     
   ],
   imports: [
