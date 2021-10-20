@@ -27,14 +27,14 @@ export class ModalDetalhePokemonComponent {
   ngOnInit(): void {
   }
   proximo() {
-    console.log(this.idControle)
+
     if(150>this.idControle){
       this.idControle = this.idControle + 1; 
     this.pokeService.getPokemonByid(this.idControle).subscribe((pokemon: Pokemon) => {
       this.pokemonId = pokemon;
       this.pokemonId.name = this.pokemonId.name[0].toUpperCase() + this.pokemonId.name.substr(1);
       this.PokeGraficoId = this.pokemonId;
-      console.log("entrou")
+
     });
     }
   }

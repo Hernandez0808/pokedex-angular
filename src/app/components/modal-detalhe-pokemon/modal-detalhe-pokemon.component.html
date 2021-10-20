@@ -6,8 +6,8 @@
     </div>
     <div class="modal-body">
       <div class="row">
-      <div class="col-9" style="width: 16rem;">
-        <img class="card-img-top" style="width: 16rem;"
+      <div class="col-9 box">
+        <img class="card-img-top "
             src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/{{pokemonId.id}}.svg"
             alt="{{pokemonId.name}}">
           </div>
@@ -23,10 +23,10 @@
 
             
           </div>
-          <div  class="row justify-content-between">
+          <div  class="row">
             <label>Tipo</label>
-           <div class="col-2">
-             <ng-container *ngFor= "let st of pokemonId.types">
+            <ng-container *ngFor= "let st of pokemonId.types">
+            <div class="col-3">
            <p class="tipo" [ngClass]="{
           
           'poison' : st.type.name == 'poison',
@@ -49,15 +49,15 @@
           'fada' : st.type.name == 'fairy'
            
           }" >{{st.type.name}}</p>
-        </ng-container>
-          </div>
-          <div class="col-10">
+        </div>
+      </ng-container>
+        <div class="">
             <app-grafico-pokemon [PokeGrafico]="PokeGrafico" [PokeGraficoId]="PokeGraficoId"></app-grafico-pokemon>
           </div>
       </div>
     </div>
     <div style="border-top: 1px solid #dee2e6"></div>
-    <div class="d-flex justify-content-between m-3">
+    <div class="d-flex justify-content-between m-1">
       <div class="">
       <button type="button" class="btn btn-dark" (click)="anterior()">Anterior</button>
     </div>

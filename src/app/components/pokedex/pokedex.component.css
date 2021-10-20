@@ -2,8 +2,6 @@
 .card-img-top   {
     background: radial-gradient(circle, rgba(255,187,150,1) 0%, rgba(213,18,18,1) 100%);
     border: solid 5px ;
-
-
 }
 .card-body{
     background-color: silver;

@@ -43,7 +43,7 @@ export class GraficoPokemonComponent{
         plotBackgroundColor: 'none',
         plotBorderWidth: 0,
         plotShadow: false,
-        height: 200,
+        height: 170,
         
     },
     title: {
@@ -91,7 +91,6 @@ export class GraficoPokemonComponent{
     
   }
   filtraDadosInicial(){
-    console.log(this.PokeGrafico);
     let data = [];
     this.PokeGrafico.stats.forEach((e, i)=>{
       let obj = [];
@@ -108,7 +107,8 @@ export class GraficoPokemonComponent{
         plotBackgroundColor: 'none',
         plotBorderWidth: 0,
         plotShadow: false,
-        height: 200,
+        height: 170,
+        
         
     },
     title: {
@@ -142,8 +142,8 @@ export class GraficoPokemonComponent{
             },
             startAngle: -90,
             endAngle: 90,
-            center: ['50%', '90%'],
-            size: '170%',   
+            center: ['50%', '70%'],
+            size: '180%',   
         }
     },
     series: [{

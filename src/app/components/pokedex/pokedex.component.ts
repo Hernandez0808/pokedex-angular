@@ -26,31 +26,6 @@ export class PokedexComponent implements OnInit {
    public ativa:boolean = false;
    public data = new Date();
    @Output() idPoke: number;
- public  teste : Pokemon[];
-
-  ngOnChanges(){
-    // let url = window.location.href;
-    // url = url.split('/');
-    // url = [1];
-    // switch(url){
-    //   case url = "http://localhost:4200/pokemon/inicial":
-    //     this.padraoInit();
-    //     console.log("window.location.href");
-    //   case url = "http://localhost:4200/pokemon/ordenado/A-Z" :
-    //     this.alfabeticoAZ(); 
-
-    //   case url = "http://localhost:4200/pokemon/ordenado/Z-A":
-    //     this.alfabeticoZA();
-
-    //   case url = "http://localhost:4200/pokemon/ordenado/maisForte":
-    //     this.pontosAtributoMaior();
-        
-    //   case url = "http://localhost:4200/pokemon/ordenado/maisFraco":
-    //     this.pontosAtributoMenor();
-    // }
-    // console.log(url);
-
-  }
   
   ngOnInit(): void {
     this.getPokemons();

@@ -91,9 +91,14 @@
     background-repeat: no-repeat;
   }
   .poke:hover {
-    /* <img src="https://img.icons8.com/color/48/000000/open-pokeball--v2.png"/> */
-    /* content:"https://img.icons8.com/color/48/000000/open-pokeball--v2.png"; */
     background-image: url('https://img.icons8.com/color/48/000000/open-pokeball--v2.png');
     background-repeat: no-repeat;
+  }
+
+  .box {
+    float: center;
+    width: 15rem;
+    height: 15rem;
+    overflow: hidden;
   }
 

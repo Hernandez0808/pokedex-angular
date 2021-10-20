@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'pokemon', pathMatch: 'full' },
   // { path: 'pokemon', component: PokedexComponent },
   { path: 'pokemon', component: PokedexComponent },
+  { path: 'chart', component: GraficoPokemonComponent },
  
 ];
 
