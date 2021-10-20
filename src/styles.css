@@ -1,0 +1,11 @@
+@import url('http://fonts.cdnfonts.com/css/doctor-soos-bold');
+body{
+    
+    background: url("src/assets/fundo.jpg") no-repeat center center fixed;
+    background-size: cover; /*Css padrão*/
+    -webkit-background-size: cover; /*Css safari e chrome*/
+    -moz-background-size: cover; /*Css firefox*/
+    -ms-background-size: cover; /*Css IE não use mer#^@%#*/
+    -o-background-size: cover; /*Css Opera*/
+    line-height: 1;
+  }
