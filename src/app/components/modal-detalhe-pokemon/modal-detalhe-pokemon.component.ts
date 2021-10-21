@@ -40,9 +40,12 @@ export class ModalDetalhePokemonComponent {
   }
 
   anterior() {
-    if(this.idControle > 1){
+    let anima = document.getElementById("animaItem") as HTMLElement;
+    anima.classList.remove("animaItem");
+    if(this.idControle > 1 ){
     this.idControle = this.idControle - 1;
     }
+    console.log(this.idControle);
     if (this.idControle>0) {
       this.pokeService.getPokemonByid(this.idControle).subscribe((pokemon: Pokemon) => {
         this.pokemonId = pokemon;
@@ -59,6 +62,7 @@ export class ModalDetalhePokemonComponent {
       this.pokemonId = pokemon;
       this.pokemonId.name = this.pokemonId.name[0].toUpperCase() + this.pokemonId.name.substr(1);
       this.PokeGrafico = this.pokemonId;
+      console.log(this.pokemonId);
 
     });
 

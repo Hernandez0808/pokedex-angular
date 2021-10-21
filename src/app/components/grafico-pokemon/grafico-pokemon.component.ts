@@ -43,7 +43,7 @@ export class GraficoPokemonComponent{
         plotBackgroundColor: 'none',
         plotBorderWidth: 0,
         plotShadow: false,
-        height: 170,
+        height: 200,
         
     },
     title: {
@@ -107,7 +107,7 @@ export class GraficoPokemonComponent{
         plotBackgroundColor: 'none',
         plotBorderWidth: 0,
         plotShadow: false,
-        height: 170,
+        height: 200,
         
         
     },
@@ -142,7 +142,7 @@ export class GraficoPokemonComponent{
             },
             startAngle: -90,
             endAngle: 90,
-            center: ['50%', '70%'],
+            center: ['50%', '90%'],
             size: '180%',   
         }
     },

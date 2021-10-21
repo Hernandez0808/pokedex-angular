@@ -72,16 +72,16 @@ export class PokedexComponent implements OnInit {
       }
     });
     let ac1 = document.getElementById("ac1") as HTMLElement;
-    ac1.style.backgroundColor = "#2c4494"; 
+    ac1.classList.add("active");
 
     let ac2 = document.getElementById("ac2") as HTMLElement;
-    ac2.style.backgroundColor = "transparent"; 
+    ac2.classList.remove("active");
     let ac3 = document.getElementById("ac3") as HTMLElement;
-    ac3.style.backgroundColor = "transparent"; 
+    ac3.classList.remove("active");
     let ac4 = document.getElementById("ac4") as HTMLElement;
-    ac4.style.backgroundColor = "transparent"; 
+    ac4.classList.remove("active"); 
     let ac5 = document.getElementById("ac5") as HTMLElement;
-    ac5.style.backgroundColor = "transparent"; 
+    ac5.classList.remove("active"); 
   }
   alfabeticoAZ(){
     this.poke.sort((a,b)=>{
@@ -91,16 +91,16 @@ export class PokedexComponent implements OnInit {
 //sem distinção entre letras maiúsculas e minúsculas, você passa a função de comparação transformando todas as letras das strings em maiúsculas antes de efetuar a comparação, da seguinte forma:
        });
        let ac2 = document.getElementById("ac2") as HTMLElement;
-       ac2.style.backgroundColor = "#2c4494"; 
+       ac2.classList.add("active"); 
 
     let ac1 = document.getElementById("ac1") as HTMLElement;
-    ac1.style.backgroundColor = "transparent"; 
+    ac1.classList.remove("active"); 
     let ac3 = document.getElementById("ac3") as HTMLElement;
-    ac3.style.backgroundColor = "transparent"; 
+    ac3.classList.remove("active");
     let ac4 = document.getElementById("ac4") as HTMLElement;
-    ac4.style.backgroundColor = "transparent"; 
+    ac4.classList.remove("active"); 
     let ac5 = document.getElementById("ac5") as HTMLElement;
-    ac5.style.backgroundColor = "transparent"; 
+    ac5.classList.remove("active");
   }
 
   alfabeticoZA(){
@@ -111,16 +111,16 @@ export class PokedexComponent implements OnInit {
 //sem distinção entre letras maiúsculas e minúsculas, você passa a função de comparação transformando todas as letras das strings em maiúsculas antes de efetuar a comparação, da seguinte forma:
        });
        let ac3 = document.getElementById("ac3") as HTMLElement;
-    ac3.style.backgroundColor = "#2c4494"; 
+       ac3.classList.add("active"); 
 
     let ac1 = document.getElementById("ac1") as HTMLElement;
-    ac1.style.backgroundColor = "transparent"; 
+    ac1.classList.remove("active");
     let ac2 = document.getElementById("ac2") as HTMLElement;
-    ac2.style.backgroundColor = "transparent"; 
+    ac2.classList.remove("active");
     let ac4 = document.getElementById("ac4") as HTMLElement;
-    ac4.style.backgroundColor = "transparent"; 
+    ac4.classList.remove("active");
     let ac5 = document.getElementById("ac5") as HTMLElement;
-    ac5.style.backgroundColor = "transparent"; 
+    ac5.classList.remove("active");
   }
 
   pontosAtributoMaior(){
@@ -132,16 +132,16 @@ export class PokedexComponent implements OnInit {
       }
     });
     let ac4 = document.getElementById("ac4") as HTMLElement;
-    ac4.style.backgroundColor = "#2c4494"; 
+    ac4.classList.add("active"); 
 
     let ac1 = document.getElementById("ac1") as HTMLElement;
-    ac1.style.backgroundColor = "transparent"; 
+    ac1.classList.remove("active"); 
     let ac2 = document.getElementById("ac2") as HTMLElement;
-    ac2.style.backgroundColor = "transparent"; 
+    ac2.classList.remove("active"); 
     let ac3 = document.getElementById("ac3") as HTMLElement;
-    ac3.style.backgroundColor = "transparent"; 
+    ac3.classList.remove("active"); 
     let ac5 = document.getElementById("ac5") as HTMLElement;
-    ac5.style.backgroundColor = "transparent"; 
+    ac5.classList.remove("active"); 
   }
 
   
@@ -155,16 +155,16 @@ export class PokedexComponent implements OnInit {
     });
 
     let ac5 = document.getElementById("ac5") as HTMLElement;
-    ac5.style.backgroundColor = "#2c4494"; 
+    ac5.classList.add("active"); 
 
     let ac1 = document.getElementById("ac1") as HTMLElement;
-    ac1.style.backgroundColor = "transparent"; 
+    ac1.classList.remove("active"); 
     let ac2 = document.getElementById("ac2") as HTMLElement;
-    ac2.style.backgroundColor = "transparent"; 
+    ac2.classList.remove("active"); 
     let ac3 = document.getElementById("ac3") as HTMLElement;
-    ac3.style.backgroundColor = "transparent"; 
+    ac3.classList.remove("active"); 
     let ac4 = document.getElementById("ac4") as HTMLElement;
-    ac4.style.backgroundColor = "transparent"; 
+    ac4.classList.remove("active"); 
   }
 
 
