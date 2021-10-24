@@ -44,7 +44,15 @@
                             </ul>
                         </div>
                     </nav>
-
+                    <select [(ngModel)]="vazio" (ngModelChange)="selTipo($event)" name="tipos" class="form-select" aria-label="Default select example">
+                        <option value="inicial" >
+                            Todos
+                        </option>
+                        <option *ngFor="let tipo of tipos" [ngValue]="tipo" >
+                            {{tipo}}
+                        </option>
+                      
+                        </select>
                 </div>
             </div>
         </div>
@@ -65,6 +73,28 @@
                         alt="{{pokemon.name}}">
                     <div class="card-body">
                         <p class="card-text">{{pokemon.name}}</p>
+                        <!-- <p class="tipo" [ngClass]="{
+          
+                            'poison' : st.type.name == 'poison',
+                            'grama': st.type.name == 'grass',
+                            'fogo' : st.type.name == 'fire',
+                            'agua' : st.type.name == 'water',
+                            'bug' : st.type.name == 'bug',
+                            'normal' : st.type.name == 'normal',
+                            'eletrico' : st.type.name == 'electric',
+                            'terra' : st.type.name == 'ground',
+                            'lutador' : st.type.name == 'fighting',
+                            'psiquico' : st.type.name == 'psychic',
+                            'pedra' : st.type.name == 'rock',
+                            'voador' : st.type.name == 'flying',
+                            'fantasma' : st.type.name == 'ghost',
+                            'gelo' : st.type.name == 'ice',
+                            'dragao' : st.type.name == 'dragon',
+                            'metalico' : st.type.name == 'steel',
+                            'noturno': st.type.name == 'dark',
+                            'fada' : st.type.name == 'fairy'
+                             
+                            }">{{pokemon.type}}</p> -->
                         <app-modal-detalhe-pokemon [idPoke]="pokemon.id"></app-modal-detalhe-pokemon>
 
                     </div>
