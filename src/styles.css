@@ -8,4 +8,62 @@ body{
     -o-background-size: cover; /*Css Opera*/
     line-height: 1;
 }
+
+.grama{
+  background-color: green;
+}
+.poison{
+  background-color: rgb(110, 110, 110);
+}
+.fogo{
+  background-color: firebrick;
+}
+.agua{
+  background-color: rgb(20, 188, 255);
+}
+.bug{
+  background-color: greenyellow;
+  color:black;
+}
+.normal{
+  background-color: bisque;
+  color:black;
+}
+.eletrico{
+  background-color: rgb(255, 196, 0);
+}
+.terra{
+  background-color: rgb(104, 39, 9);
+}
+.lutador{
+background-color: rgb(104, 39, 9);
+}
+.psiquico{
+  background-color: palevioletred;
+}
+.voador{
+background-color: blue;
+}
+.fantasma{
+  background-color: rgb(110, 110, 110);
+}
+.gelo{
+  background-color:skyblue;
+}
+.dragao{
+background-color: slateblue;
+}
+.metal{
+  background-color: rgb(110, 110, 110);
+}
+.noturno{
+  background-color: brown;
+}
+.fada{
+  background-color: pink;
+}
+.pedra{
+  background-color: rgb(44, 10, 5);
+}
+
     

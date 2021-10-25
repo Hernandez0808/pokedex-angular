@@ -47,13 +47,21 @@ export class PokedexComponent implements OnInit {
         let pts = [];
         let type = [];
         let p;
+        let tipo = [];
       this.pokemonService.getPok().subscribe((pokemons)=>{
          pts = pokemons.stats;
          type = pokemons.types;
+         tipo = pokemons.types;
+         tipo = tipo.map(o=>{
+          let obj = {name:""};
+           obj.name = o.type.name;
+           return obj;
+         });
          p = pts.reduce((a, b) =>  a + b.base_stat, 0);
          type = type.map(o=> o.type.name);
+         
         this.tipos.push(...type);
-        let obj = {id:pokemons.id, name:pokemons.name, pts:p, types:type }
+        let obj = {id:pokemons.id, name:pokemons.name, pts:p, types:type, tipos:tipo }
 
         this.poke.push(obj);     
           this.poke.forEach((s, i)=>{
@@ -76,8 +84,9 @@ export class PokedexComponent implements OnInit {
       this.padraoInit();  
       this.PokeFiltro = this.poke;  
     });
-  
+    
   });  
+  console.log(this.poke);
    
   });
 }

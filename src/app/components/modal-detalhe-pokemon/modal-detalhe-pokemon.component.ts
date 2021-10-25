@@ -68,7 +68,7 @@ export class ModalDetalhePokemonComponent {
       this.pokemonId = pokemon;
       this.pokemonId.name = this.pokemonId.name[0].toUpperCase() + this.pokemonId.name.substr(1);
       this.PokeGrafico = this.pokemonId;
-
+      console.log(this.pokemonId);
     });
 
   }

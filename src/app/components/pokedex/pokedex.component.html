@@ -60,7 +60,7 @@
 
     
         <div class="row justify-content-lg-center mt-3">
-            <div class="col m-4" *ngFor="let pokemon of poke | filter:pesquisa ">
+            <div class="col m-4" *ngFor="let i = index; let pokemon of poke | filter:pesquisa ">
                 <div class="card " style="width: 18rem;">
                     <img *ngIf="10>pokemon.id" class="card-img-top"
                         src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/00{{pokemon.id}}.png"
@@ -68,33 +68,39 @@
                     <img *ngIf="pokemon.id>=10 && 100 > pokemon.id" class="card-img-top"
                         src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/0{{pokemon.id}}.png"
                         alt="{{pokemon.name}}">
-                    <img *ngIf="pokemon.id>=100" class="card-img-top"
+                    <img *ngIf="pokemon.id>=100" class="card-img-to         p"
                         src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/{{pokemon.id}}.png"
                         alt="{{pokemon.name}}">
                     <div class="card-body">
                         <p class="card-text">{{pokemon.name}}</p>
-                        <!-- <p class="tipo" [ngClass]="{
+                        <div class="row">
+                        <ng-container *ngFor="let pok of pokemon.tipos">
+                        <div class="col">
+                            <p [ngClass]="{
           
-                            'poison' : st.type.name == 'poison',
-                            'grama': st.type.name == 'grass',
-                            'fogo' : st.type.name == 'fire',
-                            'agua' : st.type.name == 'water',
-                            'bug' : st.type.name == 'bug',
-                            'normal' : st.type.name == 'normal',
-                            'eletrico' : st.type.name == 'electric',
-                            'terra' : st.type.name == 'ground',
-                            'lutador' : st.type.name == 'fighting',
-                            'psiquico' : st.type.name == 'psychic',
-                            'pedra' : st.type.name == 'rock',
-                            'voador' : st.type.name == 'flying',
-                            'fantasma' : st.type.name == 'ghost',
-                            'gelo' : st.type.name == 'ice',
-                            'dragao' : st.type.name == 'dragon',
-                            'metalico' : st.type.name == 'steel',
-                            'noturno': st.type.name == 'dark',
-                            'fada' : st.type.name == 'fairy'
+                            'poison' : pok.name == 'poison',
+                            'grama': pok.name == 'grass',
+                            'fogo' : pok.name == 'fire',
+                            'agua' : pok.name == 'water',
+                            'bug' : pok.name == 'bug',
+                            'normal' : pok.name == 'normal',
+                            'eletrico' : pok.name == 'electric',
+                            'terra' : pok.name == 'ground',
+                            'lutador' : pok.name == 'fighting',
+                            'psiquico' : pok.name == 'psychic',
+                            'pedra' : pok.name == 'rock',
+                            'voador' : pok.name == 'flying',
+                            'fantasma' : pok.name == 'ghost',
+                            'gelo' : pok.name == 'ice',
+                            'dragao' : pok.name == 'dragon',
+                            'metalico' : pok.name == 'steel',
+                            'noturno': pok.name == 'dark',
+                            'fada' : pok.name == 'fairy'
                              
-                            }">{{pokemon.type}}</p> -->
+                            }">{{pok.name}}</p>
+                        </div>
+                        </ng-container>
+                    </div>
                         <app-modal-detalhe-pokemon [idPoke]="pokemon.id"></app-modal-detalhe-pokemon>
 
                     </div>
