@@ -76,5 +76,9 @@ export class ModalDetalhePokemonComponent {
     this.modalService.dismissAll();
   }
 
+  traduzTipo(tipo):string{
+    return this.pokeService.traduzNomeTipo(tipo);
+  }
+
 }
 
