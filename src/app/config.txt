@@ -1,1 +1,2 @@
 ng build --prod --base-href https://hernandez0808.github.io/pokedex-angular
+"highcharts": "^10.3.3",

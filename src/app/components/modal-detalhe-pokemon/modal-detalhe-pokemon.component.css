@@ -21,12 +21,12 @@
   .poke{
     background-image: url('https://img.icons8.com/fluency/48/000000/pokeball.png');
     background-repeat: no-repeat;
-    background-position-y: 3px;
+    /* background-position-y: 3px; */
   }
   .poke:hover {
     background-image: url('https://img.icons8.com/color/48/000000/open-pokeball--v2.png');
     background-repeat: no-repeat;
-    background-position-y: 3px;
+    /* background-position-y: px; */
   }
 
 

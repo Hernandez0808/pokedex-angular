@@ -21,6 +21,7 @@
                             aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
+                        
                         <div class="collapse navbar-collapse" id="navbarText">
                             <ul class="navbar-nav m-1">
                                 <li class="nav-item">
@@ -42,17 +43,19 @@
                                         (click)="pontosAtributoMenor()">Mais Fraco</a>
                                 </li>
                             </ul>
+
+                            <select [(ngModel)]="vazio" (ngModelChange)="selTipo($event)" name="tipos" class="div-select">
+                                <option value="inicial" >
+                                    Todos
+                                </option>
+                                <option *ngFor="let tipo of itensUnicos(tipos)" [ngValue]="tipo" >
+                                    {{traduzTipo(tipo)}}
+                                </option>
+                              
+                                </select>
                         </div>
+                        
                     </nav>
-                    <select [(ngModel)]="vazio" (ngModelChange)="selTipo($event)" name="tipos" class="form-select">
-                        <option value="inicial" >
-                            Todos
-                        </option>
-                        <option *ngFor="let tipo of tipos" [ngValue]="tipo" >
-                            {{tipo}}
-                        </option>
-                      
-                        </select>
                 </div>
             </div>
         </div>
@@ -60,7 +63,7 @@
 
     
         <div class="row justify-content-lg-center mt-3">
-            <div class="col m-4" *ngFor="let i = index; let pokemon of poke | filter:pesquisa ">
+            <div class="col m-4 d-flex justify-content-center" *ngFor="let i = index; let pokemon of poke | filter:pesquisa ">
                 <div class="card " style="width: 18rem;">
                     <img *ngIf="10>pokemon.id" class="card-img-top"
                         src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/00{{pokemon.id}}.png"
@@ -92,11 +95,11 @@
                             'fantasma' : pok.name == 'ghost',
                             'gelo' : pok.name == 'ice',
                             'dragao' : pok.name == 'dragon',
-                            'metalico' : pok.name == 'steel',
+                            'metal' : pok.name == 'steel',
                             'noturno': pok.name == 'dark',
                             'fada' : pok.name == 'fairy'
                              
-                            }">{{pok.name}}</p>
+                            }">{{traduzTipo(pok.name)}}</p>
                         </div>
                         </ng-container>
                     </div>

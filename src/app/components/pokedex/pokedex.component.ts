@@ -49,6 +49,7 @@ export class PokedexComponent implements OnInit {
         let p;
         let tipo = [];
       this.pokemonService.getPok().subscribe((pokemons)=>{
+          // console.log(pokemons);
          pts = pokemons.stats;
          type = pokemons.types;
          tipo = pokemons.types;
@@ -58,9 +59,10 @@ export class PokedexComponent implements OnInit {
            return obj;
          });
          p = pts.reduce((a, b) =>  a + b.base_stat, 0);
+        //  console.log(type)
          type = type.map(o=> o.type.name);
-         
         this.tipos.push(...type);
+
         let obj = {id:pokemons.id, name:pokemons.name, pts:p, types:type, tipos:tipo }
 
         this.poke.push(obj);     
@@ -69,41 +71,30 @@ export class PokedexComponent implements OnInit {
           
           
         });
-       this.tipos = this.tipos.filter(function(elem, index, self) {
-          return index === self.indexOf(elem);
-        });
-        
-        this.tipos.forEach((s,i)=>{
-          this.tipos[i] = this.tipos[i][0].toUpperCase() + this.tipos[i].substr(1);
-        });
-        this.tipos.sort((a,b)=>{
-          let x = a.toUpperCase(),
-          y = b.toUpperCase();
-          return x == y ? 0   : x > y ? 1 :-1; 
-    //sem distinção entre letras maiúsculas e minúsculas, você passa a função de comparação transformando todas as letras das strings em maiúsculas antes de efetuar a comparação, da seguinte forma:
-           });
+
       this.padraoInit();  
       this.PokeFiltro = this.poke;  
     });
     
   });  
-  console.log(this.poke);
+  // console.log(this.poke);
    
   });
 }
-selTipo(s){
-  
-  s = s.toLowerCase();
-  if(s == "inicial"){
-    this.getPokemons();
+  selTipo(s){
+    
+    s = s.toLowerCase();
+    if(s == "inicial"){
+      this.getPokemons();
+    }
+    console.log(this.PokeFiltro);
+    this.poke = this.PokeFiltro.filter((o,i)=>{return o.types[0] == s || o.types[1] == s;  });
+    
+    console.log(this.poke);
+    console.log(s);
   }
-  this.poke = this.PokeFiltro.filter((o,i)=>{return o.types[0] == s || o.types[1] == s;  });
-  
-  console.log(this.poke);
-  console.log(s);
-}
 
-padraoInit(){
+  padraoInit(){
     this.poke.sort((a,b)=> {
       if(a.id > b.id) {//ordenando do mais forte ao mais fraco 
         return 1;
@@ -123,6 +114,7 @@ padraoInit(){
     let ac5 = document.getElementById("ac5") as HTMLElement;
     ac5.classList.remove("active"); 
   }
+
   alfabeticoAZ(){
     this.poke.sort((a,b)=>{
       let x = a.name.toUpperCase(),
@@ -205,6 +197,16 @@ padraoInit(){
     ac3.classList.remove("active"); 
     let ac4 = document.getElementById("ac4") as HTMLElement;
     ac4.classList.remove("active"); 
+  }
+
+  traduzTipo(tipo):string{
+    return this.pokemonService.traduzNomeTipo(tipo);
+  }
+
+  itensUnicos(arr:string[]){
+    return arr.filter(function(elem, index, self) {
+      return index === self.indexOf(elem);
+    });
   }
 
 

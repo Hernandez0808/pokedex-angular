@@ -45,6 +45,66 @@ export class PokedexService {
           catchError(this.handleError))
     }
 
+    traduzNomeTipo(tipo:string):string{
+                            if(tipo == 'poison'){
+                              return 'Tóxico';
+                            }
+                            else if(tipo == 'grass'){
+                              return 'Grama';
+                            }
+                            else if(tipo == 'fire'){
+                              return 'Fogo';
+                            }
+                            else if(tipo == 'water'){
+                              return 'Água';
+                            }
+                            else if(tipo == 'bug'){
+                              return 'Inseto';
+                            }
+                            else if(tipo == 'normal'){
+                              return 'Normal';
+                            }
+                            else if(tipo == 'electric'){
+                              return 'Elétrico';
+                            }
+                            else if(tipo == 'ground'){
+                              return 'Chão';
+                            }
+                            else if(tipo == 'fighting'){
+                              return 'Lutador';
+                            }
+                            else if(tipo == 'psychic'){
+                              return 'Psíquico';
+                            }
+                            else if(tipo == 'rock'){
+                              return 'Rocha';
+                            }
+                            else if(tipo == 'flying'){
+                              return 'Voador';
+                            }
+                            else if(tipo == 'ghost'){
+                              return 'Fantasma';
+                            }
+                            else if(tipo == 'ice'){
+                              return 'Gelo';
+                            }
+                            else if(tipo == 'dragon'){
+                              return 'Dragão';
+                            }
+                            else if(tipo == 'steel'){
+                              return 'Aço';
+                            }
+                            else if(tipo == 'dark'){
+                              return tipo;
+                            }
+                            else if(tipo == 'fairy'){
+                              return 'Fada';
+
+                            }else{
+                              return tipo;
+                            }
+    }
+
         
     // Manipulação de erros
     handleError(error: HttpErrorResponse) {
