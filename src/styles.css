@@ -10,60 +10,73 @@ body{
 }
 
 .grama{
-  background-color: green;
+  background-color: green !important;
 }
 .poison{
-  background-color: rgb(110, 110, 110);
+  background-color: rgb(110, 110, 110) !important;
 }
 .fogo{
-  background-color: firebrick;
+  background-color: firebrick !important;
 }
 .agua{
-  background-color: rgb(20, 188, 255);
+  background-color: rgb(20, 188, 255) !important;
 }
 .bug{
-  background-color: greenyellow;
-  color:black;
+  background-color: greenyellow !important;
+  color:black !important;
 }
 .normal{
-  background-color: bisque;
-  color:black;
+  background-color: bisque !important;
+  color:black !important;
 }
 .eletrico{
-  background-color: rgb(255, 196, 0);
+  background-color: rgb(255, 196, 0) !important;
 }
 .terra{
-  background-color: rgb(104, 39, 9);
+  background-color: rgb(104, 39, 9) !important;
 }
 .lutador{
-background-color: rgb(104, 39, 9);
+background-color: rgb(104, 39, 9) !important;
 }
 .psiquico{
-  background-color: palevioletred;
+  background-color: palevioletred !important;
 }
 .voador{
-background-color: blue;
+background-color: blue !important;
 }
 .fantasma{
-  background-color: rgb(110, 110, 110);
+  background-color: rgb(110, 110, 110) !important;
 }
 .gelo{
-  background-color:skyblue;
+  background-color:skyblue !important;
 }
 .dragao{
-background-color: slateblue;
+background-color: slateblue !important;
 }
 .metal{
-  background-color: rgb(110, 110, 110);
+  background-color: rgb(110, 110, 110) !important;
 }
 .noturno{
-  background-color: brown;
+  background-color: brown !important;
 }
 .fada{
-  background-color: pink;
+  background-color: pink !important;
 }
 .pedra{
-  background-color: rgb(44, 10, 5);
+  background-color: rgb(44, 10, 5) !important;
 }
+
+.tipo{
+  text-align: center !important;
+  border-radius: 3px !important;
+  color: white;
+  padding: 6px !important;
+}
+
+
+/* legend + * {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+} */
 
     

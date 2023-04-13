@@ -1,7 +1,7 @@
 import { Component, Input, OnInit} from '@angular/core';
-import { Chart } from 'angular-highcharts';
 import { Pokemon } from 'src/app/models/pokemon';
 import { ChartService } from './chart.service';
+import * as Highcharts from 'highcharts';
 
 
 @Component({
@@ -16,7 +16,8 @@ export class GraficoPokemonComponent{
   public chart;
   public totalPokemon:string;
   public valido = true;
-
+  @Input() idPoke: number;
+  id_chart;
   // é chamado dois eventos para poder rendereziar o grafico, um em seu estado inicial e outro para poder atualizar
   ngOnChanges() {
     if(!this.valido){
@@ -31,6 +32,8 @@ export class GraficoPokemonComponent{
   }
 
   filtraDados(){
+    this.id_chart = 'pokemon-' + this.idPoke;
+
     let data = [];
     this.PokeGrafico.stats.forEach((e, i)=>{
       let obj = [];
@@ -45,6 +48,15 @@ export class GraficoPokemonComponent{
     this.chartService.PokeGraficoName = this.PokeGrafico.name;
     this.chartService.data = data;
 
+    
+
     this.chart = this.chartService.Chart();
+
+    // let div_ok = document.getElementById(this.id_chart);
+    setTimeout(() => {
+
+      Highcharts.chart(this.id_chart, this.chart);
+
+    });
   }
 }

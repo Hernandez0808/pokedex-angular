@@ -44,7 +44,7 @@
                             </ul>
                         </div>
                     </nav>
-                    <select [(ngModel)]="vazio" (ngModelChange)="selTipo($event)" name="tipos" class="form-select" aria-label="Default select example">
+                    <select [(ngModel)]="vazio" (ngModelChange)="selTipo($event)" name="tipos" class="form-select">
                         <option value="inicial" >
                             Todos
                         </option>
@@ -68,7 +68,7 @@
                     <img *ngIf="pokemon.id>=10 && 100 > pokemon.id" class="card-img-top"
                         src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/0{{pokemon.id}}.png"
                         alt="{{pokemon.name}}">
-                    <img *ngIf="pokemon.id>=100" class="card-img-to         p"
+                    <img *ngIf="pokemon.id>=100" class="card-img-top"
                         src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/{{pokemon.id}}.png"
                         alt="{{pokemon.name}}">
                     <div class="card-body">
@@ -76,8 +76,7 @@
                         <div class="row">
                         <ng-container *ngFor="let pok of pokemon.tipos">
                         <div class="col">
-                            <p [ngClass]="{
-          
+                            <p class="tipo" [ngClass]="{
                             'poison' : pok.name == 'poison',
                             'grama': pok.name == 'grass',
                             'fogo' : pok.name == 'fire',

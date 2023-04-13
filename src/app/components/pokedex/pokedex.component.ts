@@ -72,6 +72,7 @@ export class PokedexComponent implements OnInit {
        this.tipos = this.tipos.filter(function(elem, index, self) {
           return index === self.indexOf(elem);
         });
+        
         this.tipos.forEach((s,i)=>{
           this.tipos[i] = this.tipos[i][0].toUpperCase() + this.tipos[i].substr(1);
         });

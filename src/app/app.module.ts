@@ -11,7 +11,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router, RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { GraficoPokemonComponent } from './components/grafico-pokemon/grafico-pokemon.component';
-import { ChartModule } from 'angular-highcharts';
 
 
 
@@ -34,8 +33,6 @@ import { ChartModule } from 'angular-highcharts';
     FormsModule,
     NgbModule,
     AppRoutingModule,
-    ChartModule,
-    
     
   ],
   providers: [],

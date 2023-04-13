@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Chart } from 'angular-highcharts';
-import * as Highcharts from 'highcharts';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +11,7 @@ export class ChartService {
  
   // configuração do grafico
   Chart(){
-    this.chart = new Chart({
+      return {
       chart: {
         plotBackgroundColor: 'none',
         plotBorderWidth: 0,
@@ -64,8 +62,7 @@ export class ChartService {
         data: this.data
       }]
       
-    });
-    return this.chart;
+    }
   }
 }
 
