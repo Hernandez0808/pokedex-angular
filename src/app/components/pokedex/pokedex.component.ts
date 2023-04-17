@@ -24,48 +24,45 @@ export class PokedexComponent implements OnInit {
    public pesquisa : any;
    public lst_pokemons_backup:any[] = [];
    public lst_pokemons:any[] = [];
-   public tipos = [];
+   public _lst_pokemons_tipos = [];
    public tipo_selecionado:string = "" //deixar o select em branco
     
    public ativa:boolean = false;
    public data = new Date();
 
+   _geracao:number = 1;
+
    @Output() idPoke: number;
   
   ngOnInit() {
     this.getPokemons();
- 
+    this.getAllPokemonsTipos();
   }
   getPokemons(){
-    this.pokemonService.getPokemon().subscribe(async (pokemons)=>{
-      let tipos_pokemons:any[]=[]
-    //  Promise.all(pokemons.results.map((pokemon:any, index:number)=>{
+    console.log('teste')
+    this.lst_pokemons = [];
+    this.pokemonService.getPokemon(this._geracao).subscribe((pokemons)=>{
+      // let tipos_pokemons:any[]=[]
+     pokemons.results.forEach((pokemon:any, index:number)=>{
 
-    //   this.pokemonService.getPok(pokemon.url).subscribe((pokemon:any)=>{
-    //     let objPokemon = {} as any;
+      this.pokemonService.getPok(pokemon.url).subscribe((pokemon:any)=>{
+        let objPokemon = {} as any;
 
-    //     objPokemon.id = pokemon.id;
-    //     objPokemon.name = pokemon.name;
-    //     objPokemon.pts = pokemon.stats.reduce((a, b) =>  a + b.base_stat, 0);
-    //     objPokemon.tipos = pokemon.types.map(o =>{
-    //         let obj = {name:""};
-    //          obj.name = o.type.name;
-    //          tipos_pokemons.push(o.type.name);
-    //          return obj;
-    //        });
+        objPokemon.id = pokemon.id;
+        objPokemon.name = pokemon.name;
+        objPokemon.pts = pokemon.stats.reduce((a, b) =>  a + b.base_stat, 0);
+        objPokemon.tipos = pokemon.types.map((t)=> t.type.name);
 
-    //       this.lst_pokemons.push(objPokemon);          
+          this.lst_pokemons.push(objPokemon);          
           
-    //       this.lst_pokemons.forEach((s, i)=>{
-    //       this.lst_pokemons[i].name = this.lst_pokemons[i].name[0].toUpperCase() + this.lst_pokemons[i].name.substr(1);
-    //     });
+          this.lst_pokemons.forEach((s, i)=>{
+          this.lst_pokemons[i].name = this.lst_pokemons[i].name[0].toUpperCase() + this.lst_pokemons[i].name.substr(1);
+        });
 
-    //   this.padraoInit();  
-    //   this.lst_pokemons_backup = JSON.parse(JSON.stringify(this.lst_pokemons));  
-    //     // resolve()
-    //     return tipos_pokemons
-    //   });
-    // }));
+      this.padraoInit();  
+      this.lst_pokemons_backup = JSON.parse(JSON.stringify(this.lst_pokemons));  
+      });
+    });
     // setTimeout(() => { 
     //   // let s  = this.itensUnicos(this.tipos); 
     //   console.log(tipos_pokemons);
@@ -73,52 +70,64 @@ export class PokedexComponent implements OnInit {
     //     console.log(tipo)
     //   });
     // });
-    let observables = pokemons.results.map((pokemon:any, index:number)=>{//cria observaveis para tipos
+  //   let observables = pokemons.results.map((pokemon:any, index:number)=>{//cria observaveis para tipos
 
-      return this.pokemonService.getPok(pokemon.url).pipe(map((pokemon:any)=>{
+  //     return this.pokemonService.getPok(pokemon.url).pipe(map((pokemon:any)=>{
 
-        let objPokemon = {} as any;
-        objPokemon.id = pokemon.id;
-        objPokemon.name = pokemon.name;
-        objPokemon.pts = pokemon.stats.reduce((a, b) =>  a + b.base_stat, 0);
-        objPokemon.tipos = pokemon.types.map(o =>{
-          let obj = {name:""};
-          obj.name = o.type.name;
-          tipos_pokemons.push(o.type.name);
-          return obj;
-        });
-        this.lst_pokemons.push(objPokemon);          
-        this.lst_pokemons.forEach((s, i)=>{
-          this.lst_pokemons[i].name = this.lst_pokemons[i].name[0].toUpperCase() + this.lst_pokemons[i].name.substr(1);
-        });
-        this.padraoInit();  
-        this.lst_pokemons_backup = JSON.parse(JSON.stringify(this.lst_pokemons));  
-        return tipos_pokemons
-      }));
+  //       let objPokemon = {} as any;
+  //       objPokemon.id = pokemon.id;
+  //       objPokemon.name = pokemon.name;
+  //       objPokemon.pts = pokemon.stats.reduce((a, b) =>  a + b.base_stat, 0);
+  //       objPokemon.tipos = pokemon.types.map(o =>{
+  //         let obj = {name:""};
+  //         obj.name = o.type.name;
+  //         tipos_pokemons.push(o.type.name);
+  //         return obj;
+  //       });
+  //       this.lst_pokemons.push(objPokemon);          
+  //       this.lst_pokemons.forEach((s, i)=>{
+  //         this.lst_pokemons[i].name = this.lst_pokemons[i].name[0].toUpperCase() + this.lst_pokemons[i].name.substr(1);
+  //       });
+  //       this.padraoInit();  
+  //       this.lst_pokemons_backup = JSON.parse(JSON.stringify(this.lst_pokemons));  
+  //       return tipos_pokemons
+  //     }));
 
-    });
+  //   });
     
-    // concatenar os observables em um único observable e converter em uma promise
-    let observableConcat = from(observables).pipe(concatAll()); 
-    // from para converter o array de observables em um único observable e o operador
-    //concatAll() para concatenar os resultados de todas as Promises geradas pela chamada ao serviço
-    let promise = observableConcat.toPromise();
+  //   // concatenar os observables em um único observable e converter em uma promise
+  //   let observableConcat = from(observables).pipe(concatAll()); 
+  //   // from para converter o array de observables em um único observable e o operador
+  //   //concatAll() para concatenar os resultados de todas as Promises geradas pela chamada ao serviço
+  //   let promise = observableConcat.toPromise();
     
-    promise.then((tipos_pokemons) => {
-      this.tipos = this.itensUnicos(tipos_pokemons);
+  //   promise.then((tipos_pokemons) => {
+  //     this.tipos = this.itensUnicos(tipos_pokemons);
  
-    }).catch((err) => {
-      console.error(err);
-    });
+  //   }).catch((err) => {
+  //     console.error(err);
+  //   });
   });
-}
+  }
+
+  getAllPokemonsTipos(){
+    this.pokemonService.getAllTiposPokemon().subscribe((lst_pokemons_tipos:Pokemon)=>{
+      this._lst_pokemons_tipos = lst_pokemons_tipos.results.map((t:any)=> t.name);
+    });
+  }
+
   selTipo(tipo){
-    console.log(tipo)
     tipo = tipo.toLowerCase();
     if(tipo == "inicial"){
       this.getPokemons();
     }
-    this.lst_pokemons= this.lst_pokemons_backup.filter((o,i)=>{ return o.tipos[0]?.name == tipo || o.tipos[1]?.name == tipo; });
+    this.lst_pokemons= this.lst_pokemons_backup.filter((o,i)=>{ return o.tipos[0] == tipo || o.tipos[1] == tipo; });
+
+  }
+  
+  selGeracao(_geracao){
+
+    this.getPokemons();
 
   }
 
@@ -204,7 +213,6 @@ export class PokedexComponent implements OnInit {
     ac5.classList.remove("active"); 
   }
 
-  
   pontosAtributoMenor(){
     this.lst_pokemons.sort((a,b)=> {
       if(b.pts < a.pts) {//ordenando do mais forte ao mais fraco 

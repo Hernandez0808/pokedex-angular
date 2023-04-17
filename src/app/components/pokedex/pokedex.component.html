@@ -1,5 +1,5 @@
 <div class="container">
-    
+
     <div class="row">
         <div class="text-center" style="width: 30rem;">
             <img class="fadeInDown" style="width: 100%;" src="assets/poke-logo.png" alt="Pokemon">
@@ -20,7 +20,7 @@
                             aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        
+
                         <div class="collapse navbar-collapse" id="navbarText">
                             <ul class="navbar-nav m-1">
                                 <li class="nav-item">
@@ -43,75 +43,87 @@
                                 </li>
                             </ul>
 
-                            <select [disabled]="tipos.length == 0" [(ngModel)]="tipo_selecionado" (ngModelChange)="selTipo($event)" name="tipos" class="div-select">
-                                <option value="inicial" >
+                            <select [(ngModel)]="tipo_selecionado"
+                                (ngModelChange)="selTipo($event)" name="tipos" class="div-select">
+                                <option value="inicial">
                                     Todos
                                 </option>
-                                <option *ngFor="let tipo of tipos" [ngValue]="tipo" >
+                                <option *ngFor="let tipo of _lst_pokemons_tipos" [ngValue]="tipo">
                                     {{traduzTipo(tipo)}}
                                 </option>
-                              
-                                </select>
+
+                            </select>
+
+                            <select [(ngModel)]="_geracao" (ngModelChange)="selGeracao($event)" name="tipos"
+                                class="div-select">
+                                <option value="1">
+                                    Geração 1
+                                </option>
+                                <option value="2">
+                                    Geração 2
+                                </option>
+                                <option value="3">
+                                    Geração 3
+                                </option>
+                            </select>
                         </div>
-                        
+
                     </nav>
                 </div>
             </div>
         </div>
     </div>
 
-    
-        <div class="row justify-content-lg-center mt-3">
-            <ng-container *ngIf="lst_pokemons.length > 0">
-            <div class="col m-4 d-flex justify-content-center" *ngFor="let pokemon of lst_pokemons | filter:pesquisa; let i = index;">
+
+    <div class="row justify-content-lg-center mt-3">
+        <ng-container *ngIf="lst_pokemons.length > 0">
+            <div class="col m-4 d-flex justify-content-center"
+                *ngFor="let pokemon of lst_pokemons | filter:pesquisa; let i = index;">
                 <div class="card " style="width: 18rem;">
                     <img *ngIf="10>pokemon.id" class="card-img-top"
-                        src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/00{{pokemon.id}}.png"
-                        >
+                        src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/00{{pokemon.id}}.png">
                     <img *ngIf="pokemon.id>=10 && 100 > pokemon.id" class="card-img-top"
-                        src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/0{{pokemon.id}}.png"
-                        >
+                        src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/0{{pokemon.id}}.png">
                     <img *ngIf="pokemon.id>=100" class="card-img-top"
-                        src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/{{pokemon.id}}.png"
-                        >
+                        src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/{{pokemon.id}}.png">
                     <div class="card-body">
                         <p class="card-text">{{pokemon.name}}</p>
                         <div class="row">
-                        <ng-container *ngFor="let pok of pokemon.tipos">
-                        <div class="col">
-                            <p class="tipo" [ngClass]="{
-                            'poison' : pok.name == 'poison',
-                            'grama': pok.name == 'grass',
-                            'fogo' : pok.name == 'fire',
-                            'agua' : pok.name == 'water',
-                            'bug' : pok.name == 'bug',
-                            'normal' : pok.name == 'normal',
-                            'eletrico' : pok.name == 'electric',
-                            'terra' : pok.name == 'ground',
-                            'lutador' : pok.name == 'fighting',
-                            'psiquico' : pok.name == 'psychic',
-                            'pedra' : pok.name == 'rock',
-                            'voador' : pok.name == 'flying',
-                            'fantasma' : pok.name == 'ghost',
-                            'gelo' : pok.name == 'ice',
-                            'dragao' : pok.name == 'dragon',
-                            'metal' : pok.name == 'steel',
-                            'noturno': pok.name == 'dark',
-                            'fada' : pok.name == 'fairy'
+                            <ng-container *ngFor="let t of pokemon.tipos">
+                                <div class="col">
+                                    <p class="tipo" [ngClass]="{
+                            'poison' : t == 'poison',
+                            'grama': t == 'grass',
+                            'fogo' : t == 'fire',
+                            'agua' : t == 'water',
+                            'bug' : t == 'bug',
+                            'normal' : t == 'normal',
+                            'eletrico' : t == 'electric',
+                            'terra' : t == 'ground',
+                            'lutador' : t == 'fighting',
+                            'psiquico' : t == 'psychic',
+                            'pedra' : t == 'rock',
+                            'voador' : t == 'flying',
+                            'fantasma' : t == 'ghost',
+                            'gelo' : t == 'ice',
+                            'dragao' : t == 'dragon',
+                            'metal' : t == 'steel',
+                            'noturno': t == 'dark',
+                            'fada' : t == 'fairy'
                              
-                            }">{{traduzTipo(pok.name)}}</p>
+                            }">{{traduzTipo(t)}}</p>
+                                </div>
+                            </ng-container>
                         </div>
-                        </ng-container>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <app-modal-detalhe-pokemon [idPoke]="pokemon.id"></app-modal-detalhe-pokemon>
-                    </div>
+                        <div class="d-flex justify-content-center">
+                            <app-modal-detalhe-pokemon [idPoke]="pokemon.id"></app-modal-detalhe-pokemon>
+                        </div>
 
                     </div>
                 </div>
             </div>
-             </ng-container>
-        </div>
-        
-    
+        </ng-container>
+    </div>
+
+
 </div>

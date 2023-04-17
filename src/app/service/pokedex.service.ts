@@ -10,7 +10,7 @@ import { Pokemon } from '../models/pokemon';
 export class PokedexService {
 
     // url = 'https://pokeapi.co/api/v2/pokemon?limit=151&offset=10 '; // api rest fake 
-    url = 'https://pokeapi.co/api/v2/pokemon?limit=150'; // api rest fake 
+    url = 'https://pokeapi.co/api/v2/pokemon?limit='; // api rest fake 
     urlId = 'https://pokeapi.co/api/v2/pokemon'; // api rest fake 
 
     // injetando o HttpClient
@@ -30,7 +30,15 @@ export class PokedexService {
     }
 
      // Obtem todos os pokemons
-    getPokemon(): Observable<Pokemon> {
+    getPokemon(geracao:number): Observable<Pokemon> {
+      if(geracao == 1){
+        this.url = 'https://pokeapi.co/api/v2/pokemon?limit=151'; 
+      }else if(geracao == 2){
+        this.url = 'https://pokeapi.co/api/v2/pokemon?limit=100&offset=151'; 
+      }else if(geracao == 3){
+        this.url = 'https://pokeapi.co/api/v2/pokemon?limit=135&offset=251'; 
+      }
+      console.log(geracao)
       return this.httpClient.get<Pokemon>(this.url)
         .pipe(
           retry(2),
@@ -39,6 +47,13 @@ export class PokedexService {
 
     getPok(pokemon_url:string): Observable<Pokemon> {//requisição dos detalhes de todos os pokemons
       return this.httpClient.get<Pokemon>(pokemon_url)
+        .pipe(
+          retry(2),
+          catchError(this.handleError));
+    }
+
+    getAllTiposPokemon(): Observable<Pokemon> {//requisição dos detalhes de todos os pokemons
+      return this.httpClient.get<Pokemon>('https://pokeapi.co/api/v2/type')
         .pipe(
           retry(2),
           catchError(this.handleError))
