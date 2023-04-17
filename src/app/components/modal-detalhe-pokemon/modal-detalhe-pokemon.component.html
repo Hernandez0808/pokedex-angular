@@ -1,12 +1,17 @@
+  <div (click)="open(content)" type="button" class="d-flex justify-content-center detalheBotao">
+    <div class="poke"></div>
+    <p class="mt-3 s">Detalhes</p>
+  </div>
+
 <ng-template  #content let-c="close" let-d="dismiss">
   <ng-container *ngIf="pokemonId">
     <div class="modal-header bg-dark text-white">
       <h4 class="modal-title" id="modal-basic-title">{{pokemonId.name}} - {{pokemonId.id}}</h4>
       <i type="button" class="bi bi-x-lg btn btn-danger btn-sm" (click)="fechar()"></i>
     </div>
-    <div class="modal-body " id="animaItem">
+    <div class="modal-body " id="animaItem" style="max-height: 34rem; overflow: auto;">
       <div class="row">
-        <div class="col-9 box" style="width: 15rem;">
+        <div class="col-md-6 col-sm-12  box">
           <img *ngIf="10>pokemonId.id" style="width: 100%;"
             src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/00{{pokemonId.id}}.png" alt="{{pokemonId.name}}">
           <img *ngIf="pokemonId.id >=10 && 100 > pokemonId.id" style="width: 100%;"
@@ -14,7 +19,8 @@
           <img *ngIf="pokemonId.id>=100" style="width: 100%;"
             src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/{{pokemonId.id}}.png" alt="{{pokemonId.name}}">
         </div>
-        <div class="col">
+
+        <div class="col-md-6 col-sm-12 ">
           <table class="table">
             <tbody>
               <tr *ngFor="let st of pokemonId.stats">
@@ -23,8 +29,6 @@
             </tbody>
           </table>
         </div>
-
-
       </div>
       <div class="row">
         <label>Tipo</label>
@@ -70,9 +74,4 @@
     </div>
   </ng-container>
 </ng-template>
-<div class="d-flex justify-content-center">
 
-  <div (click)="open(content)" type="button" class="poke detalheBotao">
-    <p class="mt-3 detalheBotao">Detalhes</p>
-  </div>
-</div>

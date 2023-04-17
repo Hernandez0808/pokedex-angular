@@ -7,8 +7,7 @@
         <div class="col text-center">
 
             <img class="img-input fadeInLeft"
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{data | date:'m'}}.png"
-                alt="{{pokemon.name}}">
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{data | date:'m'}}.png">
 
             <input class="form-control fadeInRight sombra" style="width: 300px; display: inline;" type="text"
                 [(ngModel)]="pesquisa" placeholder="Pesquisar">
@@ -44,11 +43,11 @@
                                 </li>
                             </ul>
 
-                            <select [(ngModel)]="vazio" (ngModelChange)="selTipo($event)" name="tipos" class="div-select">
+                            <select [disabled]="tipos.length == 0" [(ngModel)]="tipo_selecionado" (ngModelChange)="selTipo($event)" name="tipos" class="div-select">
                                 <option value="inicial" >
                                     Todos
                                 </option>
-                                <option *ngFor="let tipo of itensUnicos(tipos)" [ngValue]="tipo" >
+                                <option *ngFor="let tipo of tipos" [ngValue]="tipo" >
                                     {{traduzTipo(tipo)}}
                                 </option>
                               
@@ -63,17 +62,18 @@
 
     
         <div class="row justify-content-lg-center mt-3">
-            <div class="col m-4 d-flex justify-content-center" *ngFor="let i = index; let pokemon of poke | filter:pesquisa ">
+            <ng-container *ngIf="lst_pokemons.length > 0">
+            <div class="col m-4 d-flex justify-content-center" *ngFor="let pokemon of lst_pokemons | filter:pesquisa; let i = index;">
                 <div class="card " style="width: 18rem;">
                     <img *ngIf="10>pokemon.id" class="card-img-top"
                         src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/00{{pokemon.id}}.png"
-                        alt="{{pokemon.name}}">
+                        >
                     <img *ngIf="pokemon.id>=10 && 100 > pokemon.id" class="card-img-top"
                         src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/0{{pokemon.id}}.png"
-                        alt="{{pokemon.name}}">
+                        >
                     <img *ngIf="pokemon.id>=100" class="card-img-top"
                         src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/{{pokemon.id}}.png"
-                        alt="{{pokemon.name}}">
+                        >
                     <div class="card-body">
                         <p class="card-text">{{pokemon.name}}</p>
                         <div class="row">
@@ -103,11 +103,14 @@
                         </div>
                         </ng-container>
                     </div>
+                    <div class="d-flex justify-content-center">
                         <app-modal-detalhe-pokemon [idPoke]="pokemon.id"></app-modal-detalhe-pokemon>
+                    </div>
 
                     </div>
                 </div>
             </div>
+             </ng-container>
         </div>
         
     

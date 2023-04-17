@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { concatAll, from, map } from 'rxjs';
 import { Pokemon } from 'src/app/models/pokemon';
 import { PokedexService } from 'src/app/service/pokedex.service';
 
@@ -21,13 +22,11 @@ export class PokedexComponent implements OnInit {
     config.keyboard = false;
     }
    public pesquisa : any;
-   public PokeFiltro = [];
-   public pokemons:Pokemon[];
-   public pokemon = {} as Pokemon;
-   public poke = [];
+   public lst_pokemons_backup:any[] = [];
+   public lst_pokemons:any[] = [];
    public tipos = [];
-   public vazio //deixar o select em branco
-
+   public tipo_selecionado:string = "" //deixar o select em branco
+    
    public ativa:boolean = false;
    public data = new Date();
 
@@ -38,64 +37,93 @@ export class PokedexComponent implements OnInit {
  
   }
   getPokemons(){
-    this.pokemonService.getPokemon().subscribe((pokemons)=>{
-      this.pokemon = pokemons;
-      this.pokemons = this.pokemon.results;
-      
-      this.pokemons.forEach((s,i)=>{
-        this.pokemonService.urlPoke = s.url;
-        let pts = [];
-        let type = [];
-        let p;
-        let tipo = [];
-      this.pokemonService.getPok().subscribe((pokemons)=>{
-          // console.log(pokemons);
-         pts = pokemons.stats;
-         type = pokemons.types;
-         tipo = pokemons.types;
-         tipo = tipo.map(o=>{
+    this.pokemonService.getPokemon().subscribe(async (pokemons)=>{
+      let tipos_pokemons:any[]=[]
+    //  Promise.all(pokemons.results.map((pokemon:any, index:number)=>{
+
+    //   this.pokemonService.getPok(pokemon.url).subscribe((pokemon:any)=>{
+    //     let objPokemon = {} as any;
+
+    //     objPokemon.id = pokemon.id;
+    //     objPokemon.name = pokemon.name;
+    //     objPokemon.pts = pokemon.stats.reduce((a, b) =>  a + b.base_stat, 0);
+    //     objPokemon.tipos = pokemon.types.map(o =>{
+    //         let obj = {name:""};
+    //          obj.name = o.type.name;
+    //          tipos_pokemons.push(o.type.name);
+    //          return obj;
+    //        });
+
+    //       this.lst_pokemons.push(objPokemon);          
+          
+    //       this.lst_pokemons.forEach((s, i)=>{
+    //       this.lst_pokemons[i].name = this.lst_pokemons[i].name[0].toUpperCase() + this.lst_pokemons[i].name.substr(1);
+    //     });
+
+    //   this.padraoInit();  
+    //   this.lst_pokemons_backup = JSON.parse(JSON.stringify(this.lst_pokemons));  
+    //     // resolve()
+    //     return tipos_pokemons
+    //   });
+    // }));
+    // setTimeout(() => { 
+    //   // let s  = this.itensUnicos(this.tipos); 
+    //   console.log(tipos_pokemons);
+    //   tipos_pokemons.forEach((tipo)=>{
+    //     console.log(tipo)
+    //   });
+    // });
+    let observables = pokemons.results.map((pokemon:any, index:number)=>{//cria observaveis para tipos
+
+      return this.pokemonService.getPok(pokemon.url).pipe(map((pokemon:any)=>{
+
+        let objPokemon = {} as any;
+        objPokemon.id = pokemon.id;
+        objPokemon.name = pokemon.name;
+        objPokemon.pts = pokemon.stats.reduce((a, b) =>  a + b.base_stat, 0);
+        objPokemon.tipos = pokemon.types.map(o =>{
           let obj = {name:""};
-           obj.name = o.type.name;
-           return obj;
-         });
-         p = pts.reduce((a, b) =>  a + b.base_stat, 0);
-        //  console.log(type)
-         type = type.map(o=> o.type.name);
-        this.tipos.push(...type);
-
-        let obj = {id:pokemons.id, name:pokemons.name, pts:p, types:type, tipos:tipo }
-
-        this.poke.push(obj);     
-          this.poke.forEach((s, i)=>{
-          this.poke[i].name = this.poke[i].name[0].toUpperCase() + this.poke[i].name.substr(1);
-          
-          
+          obj.name = o.type.name;
+          tipos_pokemons.push(o.type.name);
+          return obj;
         });
+        this.lst_pokemons.push(objPokemon);          
+        this.lst_pokemons.forEach((s, i)=>{
+          this.lst_pokemons[i].name = this.lst_pokemons[i].name[0].toUpperCase() + this.lst_pokemons[i].name.substr(1);
+        });
+        this.padraoInit();  
+        this.lst_pokemons_backup = JSON.parse(JSON.stringify(this.lst_pokemons));  
+        return tipos_pokemons
+      }));
 
-      this.padraoInit();  
-      this.PokeFiltro = this.poke;  
     });
     
-  });  
-  // console.log(this.poke);
-   
+    // concatenar os observables em um único observable e converter em uma promise
+    let observableConcat = from(observables).pipe(concatAll()); 
+    // from para converter o array de observables em um único observable e o operador
+    //concatAll() para concatenar os resultados de todas as Promises geradas pela chamada ao serviço
+    let promise = observableConcat.toPromise();
+    
+    promise.then((tipos_pokemons) => {
+      this.tipos = this.itensUnicos(tipos_pokemons);
+ 
+    }).catch((err) => {
+      console.error(err);
+    });
   });
 }
-  selTipo(s){
-    
-    s = s.toLowerCase();
-    if(s == "inicial"){
+  selTipo(tipo){
+    console.log(tipo)
+    tipo = tipo.toLowerCase();
+    if(tipo == "inicial"){
       this.getPokemons();
     }
-    console.log(this.PokeFiltro);
-    this.poke = this.PokeFiltro.filter((o,i)=>{return o.types[0] == s || o.types[1] == s;  });
-    
-    console.log(this.poke);
-    console.log(s);
+    this.lst_pokemons= this.lst_pokemons_backup.filter((o,i)=>{ return o.tipos[0]?.name == tipo || o.tipos[1]?.name == tipo; });
+
   }
 
   padraoInit(){
-    this.poke.sort((a,b)=> {
+    this.lst_pokemons.sort((a,b)=> {
       if(a.id > b.id) {//ordenando do mais forte ao mais fraco 
         return 1;
       } else {
@@ -116,7 +144,7 @@ export class PokedexComponent implements OnInit {
   }
 
   alfabeticoAZ(){
-    this.poke.sort((a,b)=>{
+    this.lst_pokemons.sort((a,b)=>{
       let x = a.name.toUpperCase(),
       y = b.name.toUpperCase();
       return x == y ? 0   : x > y ? 1 :-1; 
@@ -136,7 +164,7 @@ export class PokedexComponent implements OnInit {
   }
 
   alfabeticoZA(){
-    this.poke.sort((a,b)=>{
+    this.lst_pokemons.sort((a,b)=>{
       let x = a.name.toUpperCase(),
       y = b.name.toUpperCase();
       return x == y ? 0   : y > x ? 1 :-1; 
@@ -156,7 +184,7 @@ export class PokedexComponent implements OnInit {
   }
 
   pontosAtributoMaior(){
-    this.poke.sort((a,b)=> {
+    this.lst_pokemons.sort((a,b)=> {
       if(a.pts < b.pts) {//ordenando do mais forte ao mais fraco 
         return 1;
       } else {
@@ -178,7 +206,7 @@ export class PokedexComponent implements OnInit {
 
   
   pontosAtributoMenor(){
-    this.poke.sort((a,b)=> {
+    this.lst_pokemons.sort((a,b)=> {
       if(b.pts < a.pts) {//ordenando do mais forte ao mais fraco 
         return 1;
       } else {
