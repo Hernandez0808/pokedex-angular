@@ -22,50 +22,51 @@
                         </button>
 
                         <div class="collapse navbar-collapse" id="navbarText">
-                            <ul class="navbar-nav m-1">
-                                <li class="nav-item">
-                                    <a class="nav-link " id="ac1" (click)=" padraoInit()">Inicial</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="ac2" (click)="alfabeticoAZ()">A - Z</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="ac3" [routerLinkActive]="['active']"
-                                        (click)="alfabeticoZA()">Z - A</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="ac4" [routerLinkActive]="['active']"
-                                        (click)="pontosAtributoMaior()">Mais Forte</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="ac5" [routerLinkActive]="['active']"
-                                        (click)="pontosAtributoMenor()">Mais Fraco</a>
-                                </li>
-                            </ul>
+                            <div>
+                                <div>
 
-                            <select [(ngModel)]="tipo_selecionado"
-                                (ngModelChange)="selTipo($event)" name="tipos" class="div-select">
-                                <option value="inicial">
-                                    Todos
-                                </option>
-                                <option *ngFor="let tipo of _lst_pokemons_tipos" [ngValue]="tipo">
-                                    {{traduzTipo(tipo)}}
-                                </option>
+                                    <select [(ngModel)]="_geracao" (ngModelChange)="selGeracao($event)" name="tipos"
+                                        class="div-select">
+                                        <option *ngFor="let g of lst_geracao" [value]="g.geracao">{{g.name}}</option>
+                                    </select>
 
-                            </select>
+                                </div>
+                                <div class="d-flex justify-content-center p-1">
+                                    
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item">
+                                            <a class="nav-link " id="ac1" (click)=" padraoInit()">Inicial</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="ac2" (click)="alfabeticoAZ()">A - Z</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="ac3" [routerLinkActive]="['active']"
+                                                (click)="alfabeticoZA()">Z - A</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="ac4" [routerLinkActive]="['active']"
+                                                (click)="pontosAtributoMaior()">Mais Forte</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="ac5" [routerLinkActive]="['active']"
+                                                (click)="pontosAtributoMenor()">Mais Fraco</a>
+                                        </li>
+                                    </ul>
+                                    
+                                    <select [(ngModel)]="tipo_selecionado" (ngModelChange)="selTipo($event)" name="tipos"
+                                    class="div-select mx-2">
+                                    <option value="inicial">
+                                        Todos
+                                    </option>
+                                    <option *ngFor="let tipo of _lst_pokemons_tipos" [ngValue]="tipo">
+                                        {{traduzTipo(tipo)}}
+                                    </option>
+                                    
+                                 </select>
 
-                            <select [(ngModel)]="_geracao" (ngModelChange)="selGeracao($event)" name="tipos"
-                                class="div-select">
-                                <option value="1">
-                                    Geração 1
-                                </option>
-                                <option value="2">
-                                    Geração 2
-                                </option>
-                                <option value="3">
-                                    Geração 3
-                                </option>
-                            </select>
+                            </div>
+                            </div>
                         </div>
 
                     </nav>

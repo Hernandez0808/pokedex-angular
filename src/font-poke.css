@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Doctor Soos Bold';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Doctor Soos Bold'), url('src/assets/font/Doctor Soos Bold.woff') format('woff');
+}

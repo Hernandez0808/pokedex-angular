@@ -1,4 +1,3 @@
-@import url('http://fonts.cdnfonts.com/css/doctor-soos-bold');
 body{
     background: url("src/assets/fundo.jpg") no-repeat center center fixed;
     background-size: cover; /*Css padrão*/
@@ -13,7 +12,8 @@ body{
   background-color: green !important;
 }
 .poison{
-  background-color: rgb(110, 110, 110) !important;
+  background-color: #b97fc9 !important;
+  color: #fff !important;
 }
 .fogo{
   background-color: firebrick !important;
@@ -33,16 +33,19 @@ body{
   background-color: rgb(255, 196, 0) !important;
 }
 .terra{
-  background-color: rgb(104, 39, 9) !important;
+  background: linear-gradient(180deg, #f7de3f 50%, #ab9842 50%) !important;
+  color: #000 !important;
 }
 .lutador{
-background-color: rgb(104, 39, 9) !important;
+  background-color: rgb(104, 39, 9) !important;
 }
 .psiquico{
-  background-color: palevioletred !important;
+  background-color: #f366b9 !important;
+  color: #fff !important;
 }
 .voador{
-background-color: blue !important;
+  background: linear-gradient(180deg, #3dc7ef 50%, #fdfdfd 50%) !important; 
+  color: #000!important;
 }
 .fantasma{
   background-color: rgb(110, 110, 110) !important;
@@ -51,7 +54,7 @@ background-color: blue !important;
   background-color:skyblue !important;
 }
 .dragao{
-background-color: slateblue !important;
+  background-color: slateblue !important;
 }
 .metal{
   background-color: rgb(110, 110, 110) !important;
@@ -65,7 +68,6 @@ background-color: slateblue !important;
 .pedra{
   background-color: rgb(44, 10, 5) !important;
 }
-
 .tipo{
   text-align: center !important;
   border-radius: 3px !important;

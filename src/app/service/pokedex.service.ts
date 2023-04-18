@@ -37,6 +37,18 @@ export class PokedexService {
         this.url = 'https://pokeapi.co/api/v2/pokemon?limit=100&offset=151'; 
       }else if(geracao == 3){
         this.url = 'https://pokeapi.co/api/v2/pokemon?limit=135&offset=251'; 
+      }else if(geracao == 4){
+        this.url = 'https://pokeapi.co/api/v2/pokemon?limit=108&offset=386'; 
+      }else if(geracao == 5){
+        this.url = 'https://pokeapi.co/api/v2/pokemon?limit=156&offset=494'; 
+      }else if(geracao == 6){
+        this.url = 'https://pokeapi.co/api/v2/pokemon?limit=72&offset=649'; 
+      }else if(geracao == 7){
+        this.url = 'https://pokeapi.co/api/v2/pokemon?limit=87&offset=721'; 
+      }else if(geracao == 8){
+        this.url = 'https://pokeapi.co/api/v2/pokemon?limit=96&offset=809'; 
+      }else if(geracao == 9){
+        this.url = 'https://pokeapi.co/api/v2/pokemon?limit=103&offset=905'; 
       }
       console.log(geracao)
       return this.httpClient.get<Pokemon>(this.url)

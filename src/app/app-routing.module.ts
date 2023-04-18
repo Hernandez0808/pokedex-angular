@@ -9,9 +9,10 @@ import { GraficoPokemonComponent } from './components/grafico-pokemon/grafico-po
 
 const routes: Routes = [ 
    
-  { path: '', redirectTo: 'pokemon', pathMatch: 'full' },
+  { path: '', redirectTo: 'pokemon/1', pathMatch: 'full' },
   // { path: 'pokemon', component: PokedexComponent },
-  { path: 'pokemon', component: PokedexComponent },
+  { path: 'pokemon/:geracao', component: PokedexComponent },
+  { path: 'pokemon/:geracao/tipo/:tipo', component: PokedexComponent },
   { path: 'chart', component: GraficoPokemonComponent },
  
 ];
