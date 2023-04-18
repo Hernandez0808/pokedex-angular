@@ -4,26 +4,26 @@
   </div>
 
 <ng-template  #content let-c="close" let-d="dismiss">
-  <ng-container *ngIf="pokemonId">
+  <ng-container *ngIf="objPokemon">
     <div class="modal-header bg-dark text-white">
-      <h4 class="modal-title" id="modal-basic-title">{{pokemonId.name}} - {{pokemonId.id}}</h4>
+      <h4 class="modal-title" id="modal-basic-title">{{objPokemon.name | capitalize}} - {{objPokemon.id}}</h4>
       <i type="button" class="bi bi-x-lg btn btn-danger btn-sm" (click)="fechar()"></i>
     </div>
-    <div class="modal-body " id="animaItem" style="max-height: 34rem; overflow: auto;">
+    <div class="modal-body " id="animaItem" style="max-height: 27rem; overflow: auto;">
       <div class="row">
         <div class="col-md-6 col-sm-12  box">
-          <img *ngIf="10>pokemonId.id" style="width: 100%;"
-            src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/00{{pokemonId.id}}.png" alt="{{pokemonId.name}}">
-          <img *ngIf="pokemonId.id >=10 && 100 > pokemonId.id" style="width: 100%;"
-            src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/0{{pokemonId.id}}.png" alt="{{pokemonId.name}}">
-          <img *ngIf="pokemonId.id>=100" style="width: 100%;"
-            src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/{{pokemonId.id}}.png" alt="{{pokemonId.name}}">
+          <img *ngIf="10 > objPokemon.id" style="width: 100%;"
+            src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/00{{objPokemon.id}}.png" alt="{{objPokemon.name}}">
+          <img *ngIf="objPokemon.id >=10 && 100 > objPokemon.id" style="width: 100%;"
+            src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/0{{objPokemon.id}}.png" alt="{{objPokemon.name}}">
+          <img *ngIf="objPokemon.id>=100" style="width: 100%;"
+            src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/{{objPokemon.id}}.png" alt="{{objPokemon.name}}">
         </div>
 
         <div class="col-md-6 col-sm-12 ">
           <table class="table">
             <tbody>
-              <tr *ngFor="let st of pokemonId.stats">
+              <tr *ngFor="let st of objPokemon.stats">
                 <td>{{st.base_stat}} - {{st.stat.name}}</td>
               </tr>
             </tbody>
@@ -32,7 +32,7 @@
       </div>
       <div class="row">
         <label>Tipo</label>
-        <ng-container *ngFor="let st of pokemonId.types">
+        <ng-container *ngFor="let st of objPokemon.types">
           <div class="col-3">
             <p class="tipo" [ngClass]="{
           
@@ -59,7 +59,7 @@
           </div>
         </ng-container>
         <div>
-          <app-grafico-pokemon [PokeGrafico]="PokeGrafico" [idPoke]="idPoke"></app-grafico-pokemon>
+          <app-grafico-pokemon [objPokemon]="objPokemon"></app-grafico-pokemon>
         </div>
       </div>
     </div>

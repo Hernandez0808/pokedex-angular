@@ -4,6 +4,9 @@
     border: solid 5px ;
     height: 17.87rem;
 }
+.img-card{
+    height: 17.87rem;
+}
 .card-body{
     background-color: silver;
 }

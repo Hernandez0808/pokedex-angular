@@ -12,11 +12,11 @@ import * as Highcharts from 'highcharts';
 export class GraficoPokemonComponent{
     
     constructor(private chartService:ChartService){}
-  @Input() PokeGrafico = {} as Pokemon;
+  @Input() objPokemon = {} as Pokemon;
   public chart;
   public totalPokemon:string;
   public valido = true;
-  @Input() idPoke: number;
+
   id_chart;
   // é chamado dois eventos para poder rendereziar o grafico, um em seu estado inicial e outro para poder atualizar
   ngOnChanges() {
@@ -32,20 +32,20 @@ export class GraficoPokemonComponent{
   }
 
   filtraDados(){
-    this.id_chart = 'pokemon-' + this.idPoke;
+    this.id_chart = 'pokemon-' + this.objPokemon.id;
 
     let data = [];
-    this.PokeGrafico.stats.forEach((e, i)=>{
+    this.objPokemon.stats.forEach((e, i)=>{
       let obj = [];
       obj.push(e.stat.name, e.base_stat);
       data.push(obj)
     });
 
-    let total = this.PokeGrafico.stats.reduce((a, b) => a + b.base_stat, 0);
+    let total = this.objPokemon.stats.reduce((a, b) => a + b.base_stat, 0);
     let totalPokemon = total.toString();
 
     this.chartService.totalPokemon = totalPokemon;
-    this.chartService.PokeGraficoName = this.PokeGrafico.name;
+    this.chartService.PokeGraficoName = this.objPokemon.name;
     this.chartService.data = data;
 
     

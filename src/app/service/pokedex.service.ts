@@ -28,7 +28,6 @@ export class PokedexService {
           retry(2),
           catchError(this.handleError))
     }
-
      // Obtem todos os pokemons
     getPokemon(geracao:number): Observable<Pokemon> {
       if(geracao == 1){
@@ -120,18 +119,19 @@ export class PokedexService {
                             else if(tipo == 'steel'){
                               return 'Aço';
                             }
-                            else if(tipo == 'dark'){
-                              return tipo;
-                            }
                             else if(tipo == 'fairy'){
                               return 'Fada';
+                            }
+                            else if(tipo == 'shadow'){
+                              return 'Sombra';
 
-                            }else{
+                            }else if(tipo == 'dark'){
+                              return 'Sombrio';
+                            }
+                            else{
                               return tipo;
                             }
-    }
-
-        
+    } 
     // Manipulação de erros
     handleError(error: HttpErrorResponse) {
       let errorMessage = '';

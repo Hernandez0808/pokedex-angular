@@ -1,20 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { PokedexComponent } from './components/pokedex/pokedex.component';
-import { ModalDetalhePokemonComponent } from './components/modal-detalhe-pokemon/modal-detalhe-pokemon.component';
-import { GraficoPokemonComponent } from './components/grafico-pokemon/grafico-pokemon.component';
 
 
 
 const routes: Routes = [ 
    
-  { path: '', redirectTo: 'pokemon/1', pathMatch: 'full' },
-  // { path: 'pokemon', component: PokedexComponent },
-  { path: 'pokemon/:geracao', component: PokedexComponent },
-  { path: 'pokemon/:geracao/tipo/:tipo', component: PokedexComponent },
-  { path: 'chart', component: GraficoPokemonComponent },
- 
+  { path: '', redirectTo: 'pokemon/1/ordenacao/inicial/tipo/todos', pathMatch: 'full' },
+  { path: 'pokemon', redirectTo: 'pokemon/1/ordenacao/inicial/tipo/todos', pathMatch: 'full' },
+  { path: 'pokemon/:geracao/ordenacao/:ordenacao/tipo/:tipo', component: PokedexComponent }, 
 ];
 
 @NgModule({

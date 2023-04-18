@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router, RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { GraficoPokemonComponent } from './components/grafico-pokemon/grafico-pokemon.component';
+import { CapitalizePipe } from './helpers/capitaliza.pipe';
 
 
 
@@ -22,6 +23,7 @@ import { GraficoPokemonComponent } from './components/grafico-pokemon/grafico-po
     PokedexComponent,
     ModalDetalhePokemonComponent,
     GraficoPokemonComponent,
+    CapitalizePipe
 
     
   ],

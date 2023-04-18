@@ -10,13 +10,14 @@ import { PokedexService } from 'src/app/service/pokedex.service';
   styleUrls: ['./modal-detalhe-pokemon.component.css']
 })
 export class ModalDetalhePokemonComponent {
-  public pokemonId = {} as Pokemon;
-  public idControle: number;
+  public objPokemon = {} as Pokemon;
 
   @Input() idPoke: number;
+  indexPokemon: number = 0;
+  @Input() lst_pokemons: any[] = [];
   @Output() PokeGrafico = {} as Pokemon;
 
- 
+
 
   constructor(config: NgbModalConfig, private modalService: NgbModal, private pokeService: PokedexService) {
     config.backdrop = 'static';
@@ -25,59 +26,74 @@ export class ModalDetalhePokemonComponent {
 
   proximo() {
     let anima = document.getElementById("animaItem") as HTMLElement;
-    anima.classList.remove("animaItem");
-    if (this.idControle + 1 == 152){
+    anima.classList.remove("fadeIn");
+
+    if (this.lst_pokemons.length > this.indexPokemon + 1) {
+      this.indexPokemon++
+
+      anima.classList.add("fadeIn");
+
+      setTimeout(() => {
+        anima.classList.remove("fadeIn"); 
+      },1000);
+
+    } else {
       anima.classList.add("animaItem");
+      
+      setTimeout(() => {
+        anima.classList.remove("animaItem"); 
+      },1000);
+
     }
 
-    if(151>this.idControle){
-      this.idControle = this.idControle + 1; 
-      this.pokeService.getPokemonByid(this.idControle).subscribe((pokemon: Pokemon) => {
-      this.pokemonId = pokemon;
-      this.pokemonId.name = this.pokemonId.name[0].toUpperCase() + this.pokemonId.name.substr(1);
-      this.PokeGrafico = this.pokemonId;
+    this.setPokemonDetalhes(this.indexPokemon);
 
-    });
-    }
   }
 
   anterior() {
     let anima = document.getElementById("animaItem") as HTMLElement;
     anima.classList.remove("animaItem");
-    if (this.idControle - 1 == 0){
+    anima.classList.remove("fadeIn");
+
+    if (this.indexPokemon - 1 >= 0) {
+      this.indexPokemon--
+
+      anima.classList.add("fadeIn");
+
+      setTimeout(() => {
+        anima.classList.remove("fadeIn"); 
+      },1000);
+
+    } else {
       anima.classList.add("animaItem");
+
+      setTimeout(() => {
+        anima.classList.remove("animaItem"); 
+      },1000);
     }
-    if(this.idControle > 1 ){
-    this.idControle = this.idControle - 1;
-    
-    }
-    
-    if (this.idControle>0) {
-      this.pokeService.getPokemonByid(this.idControle).subscribe((pokemon: Pokemon) => {
-        this.pokemonId = pokemon;
-        this.pokemonId.name = this.pokemonId.name[0].toUpperCase() + this.pokemonId.name.substr(1);
-        this.PokeGrafico = this.pokemonId;
-      });
-     
-    }
+
+    this.setPokemonDetalhes(this.indexPokemon);
+
   }
 
   open(content) {
-    this.idControle = this.idPoke;
-    this.pokeService.getPokemonByid(this.idPoke).subscribe((pokemon: Pokemon) => {
-      this.modalService.open(content);
-      this.pokemonId = pokemon;
-      this.pokemonId.name = this.pokemonId.name[0].toUpperCase() + this.pokemonId.name.substr(1);
-      this.PokeGrafico = this.pokemonId;
-    });
+    this.modalService.open(content);
 
+    this.indexPokemon = this.lst_pokemons.findIndex((p) => p.id == this.idPoke);
+
+    this.objPokemon = this.lst_pokemons[this.indexPokemon];
   }
+
   fechar() {
     this.modalService.dismissAll();
   }
 
-  traduzTipo(tipo):string{
+  traduzTipo(tipo): string {
     return this.pokeService.traduzNomeTipo(tipo);
+  }
+
+  setPokemonDetalhes(idPokemon: number) {
+    this.objPokemon = this.lst_pokemons[idPokemon];
   }
 
 }

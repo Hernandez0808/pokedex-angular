@@ -35,28 +35,30 @@
                                     
                                     <ul class="navbar-nav">
                                         <li class="nav-item">
-                                            <a class="nav-link " id="ac1" (click)=" padraoInit()">Inicial</a>
+                                            <a class="nav-link" [routerLink]="[montaUrlHtml('inicial')]"  routerLinkActive="active"
+                                            (click)=" padraoInit()">Inicial</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="ac2" (click)="alfabeticoAZ()">A - Z</a>
+                                            <a class="nav-link" [routerLink]="[montaUrlHtml('az')]"  routerLinkActive="active"
+                                            (click)="alfabeticoAZ()">A - Z</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="ac3" [routerLinkActive]="['active']"
+                                            <a class="nav-link" [routerLink]="[montaUrlHtml('za')]"  routerLinkActive="active"
                                                 (click)="alfabeticoZA()">Z - A</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="ac4" [routerLinkActive]="['active']"
+                                            <a class="nav-link" [routerLink]="[montaUrlHtml('maisforte')]"  routerLinkActive="active"
                                                 (click)="pontosAtributoMaior()">Mais Forte</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="ac5" [routerLinkActive]="['active']"
+                                            <a class="nav-link" [routerLink]="[montaUrlHtml('maisfraco')]"  routerLinkActive="active"
                                                 (click)="pontosAtributoMenor()">Mais Fraco</a>
                                         </li>
                                     </ul>
                                     
                                     <select [(ngModel)]="tipo_selecionado" (ngModelChange)="selTipo($event)" name="tipos"
                                     class="div-select mx-2">
-                                    <option value="inicial">
+                                    <option value="todos">
                                         Todos
                                     </option>
                                     <option *ngFor="let tipo of _lst_pokemons_tipos" [ngValue]="tipo">
@@ -81,43 +83,49 @@
             <div class="col m-4 d-flex justify-content-center"
                 *ngFor="let pokemon of lst_pokemons | filter:pesquisa; let i = index;">
                 <div class="card " style="width: 18rem;">
-                    <img *ngIf="10>pokemon.id" class="card-img-top"
+                    <div class="card-img-top">
+                        <img *ngIf="10>pokemon.id && is_card_carregado" class="img-card"
                         src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/00{{pokemon.id}}.png">
-                    <img *ngIf="pokemon.id>=10 && 100 > pokemon.id" class="card-img-top"
+                        <img *ngIf="pokemon.id>=10 && 100 > pokemon.id && is_card_carregado" class="img-card"
                         src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/0{{pokemon.id}}.png">
-                    <img *ngIf="pokemon.id>=100" class="card-img-top"
+                        <img *ngIf="pokemon.id>=100 && is_card_carregado" class="img-card"
                         src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/{{pokemon.id}}.png">
-                    <div class="card-body">
-                        <p class="card-text">{{pokemon.name}}</p>
+                    </div>
+                    <div class="card-body" [ngClass]="{'placeholder-glow': !is_card_carregado}">
+                        <p class="card-text" *ngIf="is_card_carregado">{{pokemon.name | capitalize}}</p>
+                        <p class="w-100 placeholder" *ngIf="!is_card_carregado"></p>
                         <div class="row">
-                            <ng-container *ngFor="let t of pokemon.tipos">
+                            <ng-container *ngFor="let st of pokemon.types">
                                 <div class="col">
-                                    <p class="tipo" [ngClass]="{
-                            'poison' : t == 'poison',
-                            'grama': t == 'grass',
-                            'fogo' : t == 'fire',
-                            'agua' : t == 'water',
-                            'bug' : t == 'bug',
-                            'normal' : t == 'normal',
-                            'eletrico' : t == 'electric',
-                            'terra' : t == 'ground',
-                            'lutador' : t == 'fighting',
-                            'psiquico' : t == 'psychic',
-                            'pedra' : t == 'rock',
-                            'voador' : t == 'flying',
-                            'fantasma' : t == 'ghost',
-                            'gelo' : t == 'ice',
-                            'dragao' : t == 'dragon',
-                            'metal' : t == 'steel',
-                            'noturno': t == 'dark',
-                            'fada' : t == 'fairy'
-                             
-                            }">{{traduzTipo(t)}}</p>
+                                  <p class="tipo" *ngIf="is_card_carregado" [ngClass]="{
+                                
+                                'poison' : st.type.name == 'poison',
+                                'grama': st.type.name == 'grass',
+                                'fogo' : st.type.name == 'fire',
+                                'agua' : st.type.name == 'water',
+                                'bug' : st.type.name == 'bug',
+                                'normal' : st.type.name == 'normal',
+                                'eletrico' : st.type.name == 'electric',
+                                'terra' : st.type.name == 'ground',
+                                'lutador' : st.type.name == 'fighting',
+                                'psiquico' : st.type.name == 'psychic',
+                                'pedra' : st.type.name == 'rock',
+                                'voador' : st.type.name == 'flying',
+                                'fantasma' : st.type.name == 'ghost',
+                                'gelo' : st.type.name == 'ice',
+                                'dragao' : st.type.name == 'dragon',
+                                'metalico' : st.type.name == 'steel',
+                                'noturno': st.type.name == 'dark',
+                                'fada' : st.type.name == 'fairy'
+                                 
+                                }">{{traduzTipo(st.type.name)}}</p>
+                                <p class="w-100 placeholder" *ngIf="!is_card_carregado"></p>
                                 </div>
                             </ng-container>
                         </div>
-                        <div class="d-flex justify-content-center">
-                            <app-modal-detalhe-pokemon [idPoke]="pokemon.id"></app-modal-detalhe-pokemon>
+                        <div class="d-flex justify-content-center" >
+                                <div class="detalheBotao placeholder" *ngIf="!is_card_carregado"></div>
+                            <app-modal-detalhe-pokemon *ngIf="is_card_carregado" [lst_pokemons]="lst_pokemons" [idPoke]="pokemon.id"></app-modal-detalhe-pokemon>
                         </div>
 
                     </div>

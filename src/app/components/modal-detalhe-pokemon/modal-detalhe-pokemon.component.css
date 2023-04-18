@@ -1,23 +1,6 @@
-.modal-body{
-    background-size: cover; /*Css padrão*/
-    -webkit-background-size: cover; /*Css safari e chrome*/
-    -moz-background-size: cover; /*Css firefox*/
-    -ms-background-size: cover; /*Css IE não use mer#^@%#*/
-    -o-background-size: cover; /*Css Opera*/
-  }
-
   
    /* animação pokebola */
-   .detalheBotao{
-    width: 7rem;
-    background-color: rgb(24, 23, 23);
-    color: white;
-    border-bottom-left-radius: 50px;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding-right: 5px; 
-  }
+  
   .poke{
     width: 3rem;
     height: 3rem;
@@ -67,3 +50,20 @@
         transform: translate3d(10px, 0, 0);
         }
         } 
+    
+        .fadeIn {
+          -webkit-animation-name: fadeIn;
+          animation-name: fadeIn;
+          -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+          -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+          }
+          @-webkit-keyframes fadeIn {
+          0% {opacity: 0;}
+          100% {opacity: 1;}
+          }
+          @keyframes fadeIn {
+          0% {opacity: 0;}
+          100% {opacity: 1;}
+          } 
